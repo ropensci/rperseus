@@ -1,9 +1,24 @@
 Package: rperseus
-Title: What the Package Does (one line, title case)
+Title: Gets texts from the Perseus Digital Library
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.3.1)
-License: What license is it under?
+Authors@R: person("David", "Ranzolin", email = "daranzolin@gmail.com", role = c("aut", "cre"))
+Description: Perseus is a collection of primary source texts. This package helps
+    you get them.
+Depends:
+    R (>= 3.3.0)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports:
+    dplyr,
+    tidyr,
+    stringr,
+    httr,
+    xml2,
+    purrr
+RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/daranzolin/rperseus
+BugReports: https://github.com/daranzolin/rperseus/issues
