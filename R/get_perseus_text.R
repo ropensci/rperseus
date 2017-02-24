@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' get_perseus_text("urn:cts:greekLit:tlg0031.tlg013", "1.1-1.10")
+#' get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg013", lang = "grc", text = "1.1-1.10")
 get_perseus_text <- function(urn, language, text) {
   lang <- switch(language,
                  grc = "perseus-grc",
