@@ -4,12 +4,14 @@
 \alias{get_perseus_text}
 \title{Get a primary text by urn}
 \usage{
-get_perseus_text(urn, text)
+get_perseus_text(urn, language, text)
 }
 \arguments{
 \item{urn}{resource identifier obtained from get_perseus_catalog()}
 
 \item{text}{a precise text citation, e.g. '1.1-1.10'}
+
+\item{lang}{which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English}
 }
 \value{
 character vector of primary text

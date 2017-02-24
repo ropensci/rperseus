@@ -2,8 +2,10 @@
 #'
 #' Returns the Perseus catalog, including urn lookups.
 #'
+#' @importFrom magrittr "%>%"
 #' @return catalog data frame
 #' @export
+#'
 #' @examples
 #' get_perseus_catalog()
 get_perseus_catalog <- function() {
