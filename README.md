@@ -42,20 +42,19 @@ You can request the English translation by changing the `language` argument:
 
 As you can see, the amount of text returned for each language is unstable. To get the equivilent amount of Latin from that passage, you could set the `text` argument to "1.1-1.7".
 
-How about some Greek?
+How about some Greek from an underrated play?
 
 ```
-acts_urn <- perseus_catalog %>% 
-  filter(groupname == "New Testament",
-         label == "Acts of the Apostles") %>% 
+philoctetes_urn <- perseus_catalog %>% 
+  filter(groupname == "Sophocles",
+         label == "Philoctetes") %>% 
   .$full_urn
 
-> get_perseus_text(acts_urn, "grc", "2.15"); get_perseus_text(acts_urn, "eng", "2.15")
-[1] "οὐ γὰρ ὡς ὑμεῖς ὑπολαμβάνετε οὗτοι μεθύουσιν, ἔστιν γὰρ ὥρα τρίτη τῆς ἡμέρας,"
-[1] "For these aren't drunken, as you suppose, seeing it is only the third hour of the day."
+get_perseus_text(philoctetes_urn, "grc", "1-7")
+[1] "ἀκτὴ μὲν ἥδε τῆς περιρρύτου χθονὸς Λήμνου, βροτοῖς ἄστιπτος οὐδʼ οἰκουμένη, ἔνθʼ, ὦ κρατίστου πατρὸς Ἑλλήνων τραφεὶς Ἀχιλλέως παῖ Νεοπτόλεμε, τὸν Μηλιᾶ Ποίαντος υἱὸν ἐξέθηκʼ ἐγώ ποτε, ταχθεὶς τόδʼ ἔρδειν τῶν ἀνασσόντων ὕπο, νόσῳ καταστάζοντα διαβόρῳ πόδα·"
 
 ```
-Hilarious.
+
 
 
 
