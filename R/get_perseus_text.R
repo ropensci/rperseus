@@ -36,10 +36,16 @@ get_perseus_text <- function(urn, language, text = NULL) {
       as.character() %>%
       stringr::str_trim()
 
-    text <- paste("1.1", stringr::str_split(perseus_texts[length(perseus_texts)], "-")[[1]][2], sep = "-")
+    final_text <- stringr::str_split(perseus_texts[length(perseus_texts)], "-")[[1]][2]
+    possible_text1 <- paste("1.1", final_text, sep = "-")
+    possible_text2 <- paste("1", final_text, sep = "-")
+
+    xml_urls <- c(sprintf("http://cts.perseids.org/api/cts/?request=GetPassage&urn=%s.%s%d:%s", urn, lang, 1:5, possible_text1),
+                  sprintf("http://cts.perseids.org/api/cts/?request=GetPassage&urn=%s.%s%d:%s", urn, lang, 1:5, possible_text2))
+  } else {
+    xml_urls <- sprintf("http://cts.perseids.org/api/cts/?request=GetPassage&urn=%s.%s%d:%s", urn, lang, 1:5, text)
   }
 
-  xml_urls <- sprintf("http://cts.perseids.org/api/cts/?request=GetPassage&urn=%s.%s%d:%s", urn, lang, 1:5, text)
   resp <- get_ok_response(xml_urls)
 
   r_list <- resp %>%
@@ -51,6 +57,8 @@ get_perseus_text <- function(urn, language, text = NULL) {
   text <- gsub("\\s+", " ", text)
   text <- gsub("\\*", "", text)
   text <- stringr::str_trim(text)
+  text_df <- dplyr::data_frame(urn = urn, text = text) %>%
+    filter(text != "")
 
-  return(text)
+  return(text_df)
 }
