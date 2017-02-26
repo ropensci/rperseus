@@ -36,7 +36,8 @@ aeneid$text
 You can request the English translation by changing the `language` argument:
 
 ```
-> get_perseus_text(aeneid_urn, "eng", "1.1")
+aeneid_eng <- get_perseus_text(aeneid_urn, "eng", "1.1")
+aeneid_eng$text
 [1] "Arms and the man I sing, who first made way, predestined exile, from the Trojan shore to Italy , the blest Lavinian strand. Smitten of storms he was on land and sea by violence of Heaven, to satisfy stern Juno's sleepless wrath; and much in war he suffered, seeking at the last to found the city, and bring o'er his fathers' gods to safe abode in Latium ; whence arose the Latin race, old Alba's reverend lords, and from her hills wide-walled, imperial Rome ."
 
 ```
