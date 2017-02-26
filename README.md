@@ -40,22 +40,43 @@ You can request the English translation by changing the `language` argument:
 
 ```
 
-As you can see, the amount of text returned for each language is unstable. To get the equivilent amount of Latin from that passage, you could set the `text` argument to "1.1-1.7".
+As you can see, the amount of text returned for each language is unstable. To get the equivilent amount of Latin from that passage, you could set the `text` argument to "1.1-1.7". Furthermore, the indexing scheme varies from work to work. The API can require combinations like "1.1-1.5", "1-7", or even "21a-25a". You may have to visit the actual page from time to time to check the scheme.
 
-How about some Greek from an underrated play?
+To obtain the entire work, leave the `text` argument `NULL`. Here's how to retrieve the greek from Sophocles' underrated *Philoctetes*:
 
 ```
-philoctetes_urn <- perseus_catalog %>% 
+philoctetes <- perseus_catalog %>% 
   filter(groupname == "Sophocles",
          label == "Philoctetes") %>% 
-  .$full_urn
-
-get_perseus_text(philoctetes_urn, "grc", "1-7")
-[1] "ἀκτὴ μὲν ἥδε τῆς περιρρύτου χθονὸς Λήμνου, βροτοῖς ἄστιπτος οὐδʼ οἰκουμένη, ἔνθʼ, ὦ κρατίστου πατρὸς Ἑλλήνων τραφεὶς Ἀχιλλέως παῖ Νεοπτόλεμε, τὸν Μηλιᾶ Ποίαντος υἱὸν ἐξέθηκʼ ἐγώ ποτε, ταχθεὶς τόδʼ ἔρδειν τῶν ἀνασσόντων ὕπο, νόσῳ καταστάζοντα διαβόρῳ πόδα·"
+  .$full_urn %>%
+  get_perseus_text("grc")
 
 ```
 
+And with the text in hand, you can unleash the `tidytext` tool kit:
 
+```
+library(tidytext)
 
+philoctetes %>% 
+  unnest_tokens(word, text) %>% 
+  count(word, sort = TRUE)
+  
+# A tibble: 3,667 × 2
+          word     n
+         <chr> <int>
+1  νεοπτόλεμος   164
+2   φιλοκτήτης   141
+3          καὶ   128
+4            ὦ   119
+5           δʼ   118
+6          γὰρ    90
+7         ἀλλʼ    86
+8           τί    77
+9           μʼ    74
+10        πρὸς    70
+# ... with 3,657 more rows
 
+```
 
+While there's no obvious way to filter out the Greek stop words and prepositions or recognize the various moods and tenses of Greek verbs, there's still fun to be had.
