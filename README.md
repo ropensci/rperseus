@@ -25,9 +25,10 @@ perseus_catalog <- get_perseus_catalog()
 aeneid_urn <- perseus_catalog %>% 
   filter(groupname == "Virgil",
          label == "Aeneid") %>% 
-  .$full_urn
+  .$urn
 
-get_perseus_text(urn = aeneid_urn, language = "lat", text = "1.1")
+aeneid <- get_perseus_text(urn = aeneid_urn, language = "lat", text = "1.1")
+aeneid$text
 [1] "Arma virumque cano, Troiae qui primus ab oris"
 
 ```
@@ -42,13 +43,13 @@ You can request the English translation by changing the `language` argument:
 
 As you can see, the amount of text returned for each language is unstable. To get the equivilent amount of Latin from that passage, you could set the `text` argument to "1.1-1.7". Furthermore, the indexing scheme varies from work to work. The API can require combinations like "1.1-1.5", "1-7", or even "21a-25a". You may have to visit the actual page from time to time to check the scheme.
 
-To obtain the entire work, leave the `text` argument `NULL`. Here's how to retrieve the greek from Sophocles' underrated *Philoctetes*:
+To obtain the entire work, leave the `text` argument `NULL`. Here's how to retrieve the full greek text from Sophocles' underrated *Philoctetes*:
 
 ```
 philoctetes <- perseus_catalog %>% 
   filter(groupname == "Sophocles",
          label == "Philoctetes") %>% 
-  .$full_urn %>%
+  .$urn %>%
   get_perseus_text("grc")
 
 ```
