@@ -28,7 +28,7 @@ get_perseus_catalog <- function() {
       dat <- parse_nested_xml(x) %>%
         dplyr::select(1:7)
     }
-    names(dat) <- c("lang", "groupname", "full_urn", "urn", "title", "label", "description")
+    names(dat) <- c("lang", "groupname", "urn", "project", "title", "label", "description")
     return(dat)
   }
 
