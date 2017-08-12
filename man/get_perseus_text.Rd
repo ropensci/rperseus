@@ -4,7 +4,7 @@
 \alias{get_perseus_text}
 \title{Get a primary text by urn}
 \usage{
-get_perseus_text(urn, language, text = NULL)
+get_perseus_text(urn, language = "eng", text = NULL)
 }
 \arguments{
 \item{urn}{resource identifier obtained from get_perseus_catalog()}
