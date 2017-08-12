@@ -13,7 +13,10 @@ Imports:
     stringr,
     httr,
     xml2,
-    tidyverse
+    dplyr,
+    purrr,
+    rvest,
+    tidyr
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
