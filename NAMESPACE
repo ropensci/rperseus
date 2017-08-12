@@ -2,4 +2,3 @@
 
 export(get_perseus_catalog)
 export(get_perseus_text)
-importFrom(magrittr,"%>%")

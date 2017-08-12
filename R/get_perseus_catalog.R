@@ -1,8 +1,7 @@
 #' Get the Perseus Catalog
 #'
-#' Returns the Perseus catalog, including urn lookups.
+#' Returns the Perseus catalog, including urn lookups. You can do a manual search here: http://cts.perseids.org/
 #'
-#' @importFrom magrittr "%>%"
 #' @return catalog data frame
 #' @export
 #'

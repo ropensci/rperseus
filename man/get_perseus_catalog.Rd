@@ -10,9 +10,8 @@ get_perseus_catalog()
 catalog data frame
 }
 \description{
-Returns the Perseus catalog, including urn lookups.
+Returns the Perseus catalog, including urn lookups. You can do a manual search here: http://cts.perseids.org/
 }
 \examples{
 get_perseus_catalog()
 }
-
