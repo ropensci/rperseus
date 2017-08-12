@@ -1,9 +1,9 @@
 #' Get the Perseus Catalog
 #'
-#' Returns the Perseus catalog, including urn lookups. You can do a manual search here: http://cts.perseids.org/
+#' Returns the Perseus catalog, including urn lookups. Note: the catalog is now included in /data.
+#' You can do a manual search of the catalog here: http://cts.perseids.org/
 #'
 #' @return catalog data frame
-#' @export
 #'
 #' @examples
 #' \dontrun{
