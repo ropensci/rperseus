@@ -14,6 +14,8 @@
 #' }
 get_perseus_text <- function(urn, language = "eng", text = NULL) {
 
+  if (!urn %in% perseus_catalog$urn) stop("invalid urn: check perseus_catalog for valid urns")
+
   lang <- switch(language,
                  grc = "perseus-grc",
                  lat = "perseus-lat",
