@@ -6,7 +6,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' get_perseus_catalog()
+#' }
 get_perseus_catalog <- function() {
   options(warn = -1)
 

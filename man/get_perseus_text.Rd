@@ -20,5 +20,7 @@ character vector of primary text
 Get a primary text by urn
 }
 \examples{
+\dontrun{
 get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg013", lang = "grc", text = "1.1-1.10")
+}
 }

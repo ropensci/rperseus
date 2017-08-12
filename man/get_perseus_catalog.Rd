@@ -13,5 +13,7 @@ catalog data frame
 Returns the Perseus catalog, including urn lookups. You can do a manual search here: http://cts.perseids.org/
 }
 \examples{
+\dontrun{
 get_perseus_catalog()
+}
 }
