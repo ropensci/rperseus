@@ -1,6 +1,7 @@
 #' Get the Perseus Catalog
 #'
-#' Returns the Perseus catalog, including urn lookups. Note: the catalog is now included in /data.
+#' Returns the Perseus catalog, including urn lookups. Note: this function
+#' is no longer exported. The catalog is now included in /data and is lazily loaded.
 #' You can do a manual search of the catalog here: http://cts.perseids.org/
 #'
 #' @return catalog data frame
@@ -24,12 +25,12 @@ get_perseus_catalog <- function() {
     works <- sum(attributes(x)$names == "work")
     if (works > 1) {
       dat <- purrr::map_df(x, parse_nested_xml) %>%
-        dplyr::select(1:7)
+        dplyr::select(1:4, 6:7)
     } else {
       dat <- parse_nested_xml(x) %>%
-        dplyr::select(1:7)
+        dplyr::select(1:4, 6:7)
     }
-    names(dat) <- c("lang", "groupname", "urn", "project", "title", "label", "description")
+    names(dat) <- c("lang", "groupname", "urn", "project", "label", "description")
     return(dat)
   }
 

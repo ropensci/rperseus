@@ -9,9 +9,9 @@ get_perseus_text(urn, language, text = NULL)
 \arguments{
 \item{urn}{resource identifier obtained from get_perseus_catalog()}
 
-\item{text}{a precise text citation, e.g. '1.1-1.10'. If left NULL, the whole work is returned.}
+\item{language}{which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English}
 
-\item{lang}{which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English}
+\item{text}{a precise text citation, e.g. '1.1-1.10'. If left NULL, the whole work is returned.}
 }
 \value{
 character vector of primary text

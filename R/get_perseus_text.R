@@ -1,7 +1,7 @@
 #' Get a primary text by urn
 #'
 #' @param urn resource identifier obtained from get_perseus_catalog()
-#' @param lang which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English
+#' @param language which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English
 #' @param text a precise text citation, e.g. '1.1-1.10'. If left NULL, the whole work is returned.
 #'
 #' @return character vector of primary text
