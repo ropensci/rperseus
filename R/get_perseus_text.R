@@ -5,6 +5,7 @@
 #' @param text a precise text citation, e.g. '1.1-1.10'. If left NULL, the whole work is returned.
 #'
 #' @return character vector of primary text
+#' @import dplyr
 #' @export
 #'
 #' @examples
@@ -58,7 +59,7 @@ get_perseus_text <- function(urn, language, text = NULL) {
   text <- gsub("\\s+", " ", text)
   text <- gsub("\\*", "", text)
   text <- stringr::str_trim(text)
-  text_df <- dplyr::data_frame(urn = urn, text = text) %>%
+  text_df <- data_frame(urn = urn, text = text) %>%
     filter(text != "")
 
   return(text_df)

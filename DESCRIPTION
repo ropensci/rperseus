@@ -16,7 +16,8 @@ Imports:
     dplyr,
     purrr,
     rvest,
-    tidyr
+    tidyr,
+    stats
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown

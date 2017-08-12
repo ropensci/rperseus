@@ -42,7 +42,7 @@ get_perseus_catalog <- function() {
     purrr::keep(~ "work" %in% names(.)) %>%
     purrr::map_df(parse_perseus_xml) %>%
     tidyr::fill(groupname) %>%
-    dplyr::filter(complete.cases(.),
+    dplyr::filter(stats::complete.cases(.),
            nchar(lang) == 3)
   return(perseus_catalog)
 }
