@@ -3,6 +3,10 @@
 
 [![Build Status](https://travis-ci.org/daranzolin/rperseus.svg?branch=master)](https://travis-ci.org/daranzolin/rperseus.svg?branch=master)
 
+Author: [David Ranzolin](https://daranzolin.github.io/)
+
+License: [MIT](https://opensource.org/licenses/MIT)
+
 ## Description
 
 `rperseus` taps into the API end points at the [Perseus Digital Library's CapiTainS environment.](cts.perseids.org) A wealth of primary texts and translations are available, from Homer to Cicero to Boetheius.
