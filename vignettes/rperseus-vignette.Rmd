@@ -21,7 +21,7 @@ head(perseus_catalog)
 A snapshot of available authors:
 
 ```{r warning=FALSE, message=FALSE}
-library(tidyverse)
+library(dplyr)
 count(perseus_catalog, groupname, sort = TRUE)
 ```
 
