@@ -1,6 +1,6 @@
 #' Get a primary text by urn.
 #'
-#' @param urn resource identifier obtained from perseus_catalog
+#' @param urn resource number obtained from perseus_catalog
 #' @param language which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English.
 #' @param text a precise text citation, e.g. '1.1-1.10'. If left NULL, the whole work is returned.
 #'
@@ -10,7 +10,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg013", lang = "grc", text = "1.1-1.10")
+#' get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg013", language = "grc", text = "1.1-1.10")
+#' get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg002")
+#' get_perseus_text(urn = "urn:cts:latinLit:stoa0104p.stoa006", language = "lat")
 #' }
 get_perseus_text <- function(urn, language = "eng", text = NULL) {
 
