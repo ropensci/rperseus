@@ -29,8 +29,6 @@ To obtain a particular text, you must first know its full Uniform Resource Name 
 ```
 library(tidyverse)
 
-perseus_catalog <- get_perseus_catalog()
-
 aeneid_urn <- perseus_catalog %>% 
   filter(groupname == "Virgil",
          label == "Aeneid") %>% 
