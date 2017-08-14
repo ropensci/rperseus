@@ -2,7 +2,6 @@
 ![](https://www.lib.uchicago.edu/efts/PERSEUS/newbanner.png)
 
 [![Build Status](https://travis-ci.org/daranzolin/rperseus.svg?branch=master)](https://travis-ci.org/daranzolin/rperseus.svg?branch=master)
-
 [![codecov](https://codecov.io/gh/daranzolin/rperseus/branch/master/graph/badge.svg)](https://codecov.io/gh/daranzolin/rperseus)
 
 
