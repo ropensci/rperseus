@@ -48,8 +48,9 @@ get_full_text_index <- function(resp) {
 
 extract_text <- function(url) {
 
-  r_list <- url %>%
-    httr::GET() %>%
+  r <- httr::GET(url)
+  if (r$status_code == 500) stop("Nothing available for that text index. Try changing the text argument or leaving it NULL")
+  r_list <- r %>%
     httr::content("raw") %>%
     xml2::read_xml() %>%
     xml2::as_list()
