@@ -21,7 +21,8 @@ Imports:
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
-    testthat
+    testthat,
+    covr
 VignetteBuilder: knitr
 URL: https://github.com/daranzolin/rperseus
 BugReports: https://github.com/daranzolin/rperseus/issues
