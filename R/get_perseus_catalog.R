@@ -25,12 +25,12 @@ get_perseus_catalog <- function() {
     works <- sum(attributes(x)$names == "work")
     if (works > 1) {
       dat <- purrr::map_df(x, parse_nested_xml) %>%
-        dplyr::select(1:4, 6:7)
+        dplyr::select(1:3, 6:7)
     } else {
       dat <- parse_nested_xml(x) %>%
-        dplyr::select(1:4, 6:7)
+        dplyr::select(1:3, 6:7)
     }
-    names(dat) <- c("lang", "groupname", "urn", "project", "label", "description")
+    names(dat) <- c("lang", "groupname", "urn", "label", "description")
     return(dat)
   }
 
