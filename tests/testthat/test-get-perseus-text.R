@@ -25,15 +25,3 @@ test_that("Error thrown when text indices unavailable", {
                "Nothing available for that text index. Try changing the text argument or leaving it NULL")
 })
 
-test_that("Can download the Gospels in English", {
-  skip_on_cran()
-
-  g <- perseus_catalog %>%
-    filter(grepl("Gospel", label)) %>%
-    pull(urn) %>%
-    map_df(get_perseus_text, "eng")
-
-  #Should have a lot of God and Jesus talk
-  expect_true(sum(str_detect(g$text, "God")) > 50)
-  expect_true(sum(str_detect(g$text, "Jesus")) > 50)
-})
