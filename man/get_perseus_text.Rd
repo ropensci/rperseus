@@ -2,22 +2,22 @@
 % Please edit documentation in R/get_perseus_text.R
 \name{get_perseus_text}
 \alias{get_perseus_text}
-\title{Get a primary text by urn}
+\title{Get a primary text by urn.}
 \usage{
 get_perseus_text(urn, language = "eng", text = NULL)
 }
 \arguments{
-\item{urn}{resource identifier obtained from get_perseus_catalog()}
+\item{urn}{resource identifier obtained from perseus_catalog}
 
-\item{language}{which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English}
+\item{language}{which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English.}
 
 \item{text}{a precise text citation, e.g. '1.1-1.10'. If left NULL, the whole work is returned.}
 }
 \value{
-character vector of primary text
+a six column tbl_df
 }
 \description{
-Get a primary text by urn
+Get a primary text by urn.
 }
 \examples{
 \dontrun{
