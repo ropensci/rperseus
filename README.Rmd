@@ -22,7 +22,7 @@ License: MIT
 
 ![](http://www.infobiblio.es/wp-content/uploads/2015/06/perseus-logo.png)
 
-# Desription
+# Description
 
 `rperseus` taps into the API end points at the [Perseus Digital Library's](http://www.perseus.tufts.edu/hopper/) CapiTainS environment. A wealth of primary texts and translations are available, from Homer to Cicero to Boetheius. 
 

@@ -8,11 +8,13 @@ License: MIT
 
 ![](http://www.infobiblio.es/wp-content/uploads/2015/06/perseus-logo.png)
 
-### Decription
+Description
+===========
 
-`rperseus` taps into the API end points at the Perseus Digital Library's CapiTainS environment. A wealth of primary texts and translations are available, from Homer to Cicero to Boetheius.
+`rperseus` taps into the API end points at the [Perseus Digital Library's](http://www.perseus.tufts.edu/hopper/) CapiTainS environment. A wealth of primary texts and translations are available, from Homer to Cicero to Boetheius.
 
-### Installation
+Installation
+============
 
 `rperseus` is not on CRAN, but can be installed via:
 
@@ -20,7 +22,8 @@ License: MIT
 devtools::install_github("daranzolin/rperseus")
 ```
 
-### Usage
+Usage
+=====
 
 To obtain a particular text, you must first know its full Uniform Resource Name (urn). Urns can be accessed with a call to `get_perseus_catalog`. For example, say I want to see the opening Latin text of Virgil's *Aeneid*:
 
