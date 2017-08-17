@@ -1,35 +1,16 @@
-get_response <- function(urls) {
-  for (url in urls) {
-    resp <- httr::GET(url)
-    if (resp$status_code == 200) break
-  }
-  if (resp$status_code == 404) {
-    stop("No text available. Try changing the language argument.")
-  }
-  resp
-}
-
-build_possible_lang_paths <- function(x) {
-  prefixes <- c("1st1K", "opp", "perseus")
-  langs <- sprintf("%s-%s", prefixes, x)
-  langs <- purrr::map(langs, ~paste0(., 1:6))
-  unlist(langs)
-}
-
 reformat_urn <- function(urn) {
   urn <- gsub("urn:cts:", "", urn)
   urn <- gsub("[:.]", "/", urn)
-  return(urn)
+  urn <- stringr::str_split(urn, "/")[[1]]
+  urn_parts <- urn[1:3]
+  lang_part <- urn[4]
+  urn <- paste(urn_parts, collapse = "/")
+  return(c(urn = urn, lang_part = lang_part))
 }
 
-build_possible_urls <- function(urn, langs) {
-  BASE_URL <- paste("http://cts.perseids.org/read", urn, sep = "/")
-  possible_urls <- paste(BASE_URL, langs, sep = "/")
-  return(possible_urls)
-}
-
-get_full_text_index <- function(resp) {
-  perseus_html <- resp %>%
+get_full_text_index <- function(new_urn, lang_part) {
+  content_url <- paste("http://cts.perseids.org/read", new_urn, lang_part, sep = "/")
+  perseus_html <- httr::GET(content_url) %>%
     httr::content("text") %>%
     xml2::read_html()
 
