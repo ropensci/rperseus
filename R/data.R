@@ -4,12 +4,14 @@
 #'
 #' @format A data frame with 1246 rows and 6 variables:
 #' \describe{
-#'   \item{lang}{language, "lat"(Latin)/"grc"(Greek)}
 #'   \item{groupname}{Could refer to author (e.g. "Aristotle") or corpus (e.g. "New Testament")}
+#'   \item{label}{Text label, e.g. "Phaedrus"}
+#'   \item{title}{Text title, e.g. "Wars in Spain"}
 #'   \item{urn}{Uniform Resource Number}
-#'   \item{label}{Text title, e.g. "Phaedrus"}
-#'   \item{description}{text description}
+#'   \item{lang}{language, "lat"(Latin)/"grc"(Greek)"heb"(Hebrew)}
+#'   \item{english_translation_available}{Boolean if English is available}
+#'   \item{description}{Text description}
 #'   ...
 #' }
-#' @source \url{http://cts.perseids.org/}
+#' @source \url{http://cts.perseids.org/api/cts/?request=GetCapabilities}
 "perseus_catalog"
