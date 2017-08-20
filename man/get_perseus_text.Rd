@@ -4,25 +4,21 @@
 \alias{get_perseus_text}
 \title{Get a primary text by urn.}
 \usage{
-get_perseus_text(urn, language = "eng", text = NULL)
+get_perseus_text(text_urn)
 }
 \arguments{
-\item{urn}{resource number obtained from perseus_catalog}
-
-\item{language}{which language to be returned. "grc" for Greek, "lat" for Latin, and "eng" for English.}
-
-\item{text}{a precise text citation, e.g. '1.1-1.10'. If left NULL, the whole work is returned.}
+\item{text_urn}{resource number obtained from perseus_catalog}
 }
 \value{
-a six column tbl_df
+a seven column tbl_df
 }
 \description{
 Get a primary text by urn.
 }
 \examples{
 \dontrun{
-get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg013", language = "grc", text = "1.1-1.10")
-get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg002")
-get_perseus_text(urn = "urn:cts:latinLit:stoa0104p.stoa006", language = "lat")
+get_perseus_text("urn:cts:greekLit:tlg0013.tlg028.perseus-eng2")
+get_perseus_text("urn:cts:greekLit:tlg0013.tlg028.perseus-grc2")
+get_perseus_text("urn:cts:latinLit:stoa0215b.stoa003.opp-lat1")
 }
 }

@@ -4,14 +4,12 @@
 \name{perseus_catalog}
 \alias{perseus_catalog}
 \title{Metadata for texts available via the Perseus Digital Library.}
-\format{A data frame with 1246 rows and 6 variables:
+\format{A data frame with 2291 rows and 5 variables:
 \describe{
   \item{groupname}{Could refer to author (e.g. "Aristotle") or corpus (e.g. "New Testament")}
   \item{label}{Text label, e.g. "Phaedrus"}
-  \item{title}{Text title, e.g. "Wars in Spain"}
   \item{urn}{Uniform Resource Number}
-  \item{lang}{language, "lat"(Latin)/"grc"(Greek)"heb"(Hebrew)}
-  \item{english_translation_available}{Boolean if English is available}
+  \item{language}{language, "lat"(Latin)/"grc"(Greek)"heb"(Hebrew)}
   \item{description}{Text description}
   ...
 }}
