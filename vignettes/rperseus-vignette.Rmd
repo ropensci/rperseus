@@ -27,16 +27,16 @@ count(perseus_catalog, groupname, sort = TRUE)
 
 ### Getting a Text
 
-Once you've identified the relevant urn, paste it into a call to `get_perseus_text`. Here I've called for the Greek text of Plato's *Crito*:
+Once you've identified the relevant URN, paste it into a call to `get_perseus_text`. Here I've called for the Greek text of Plato's *Crito*:
 
 ```{r}
 crito <- get_perseus_text(text_urn = "urn:cts:greekLit:tlg0059.tlg003.perseus-grc2")
 crito$text[1]
 ```
 
-### Getting a Group of Texts
+### Getting Multiple Texts with the tidyverse
 
-You can collect all of Plato's available translations with the `tidyverse:`
+You can collect all of Plato's available English translations with the `tidyverse:`
 
 ```{r eval = FALSE}
 plato <- perseus_catalog %>% 
