@@ -5,23 +5,15 @@ library(stringr)
 test_that("Can download Aristotle's Physica", {
   skip_on_cran()
 
-  aristotle <- get_perseus_text("urn:cts:greekLit:tlg0086.tlg031", language = "grc")
+  aristotle <- get_perseus_text("urn:cts:greekLit:tlg0086.tlg031.1st1K-grc1")
 
   expect_is(aristotle, "tbl_df")
 })
 
-test_that("Error thrown when text isn't available for that language", {
+test_that("Unaccounted for URNs throw error", {
   skip_on_cran()
 
-  expect_error(get_perseus_text(urn = "urn:cts:latinLit:stoa0121i.stoa003", language = "eng"),
-               "No text available. Try changing the language argument.")
-
-})
-
-test_that("Error thrown when text indices unavailable", {
-  skip_on_cran()
-
-  expect_error(get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg013", lang = "grc", text = "1.1-1.100"),
-               "Nothing available for that text index. Try changing the text argument or leaving it NULL")
+  expect_error(get_perseus_text(text_urn = "wrong urn"),
+               "invalid text_urn argument: check perseus_catalog for valid URNs")
 })
 
