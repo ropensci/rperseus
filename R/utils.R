@@ -36,7 +36,7 @@ extract_text <- function(url) {
   r <- httr::GET(url,
                  httr::user_agent("rperseus - https://github.com/daranzolin/rperseus")
                  )
-  if (r$status_code == 500) stop("Nothing available for that text index. Try changing the text argument or leaving it NULL")
+  if (r$status_code == 500) stop("Nothing available for that URN.")
   r_list <- r %>%
     httr::content("raw") %>%
     xml2::read_xml() %>%
