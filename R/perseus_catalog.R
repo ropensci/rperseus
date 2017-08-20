@@ -2,52 +2,75 @@
 # The catalog is now included in /data and is lazily loaded.
 # You can do a manual search of the stylized and human-readable catalog here: http://cts.perseids.org/
 
-get_urn <- function(x) {
-  urn <- attributes(x$work$edition)$urn
-  if (is.null(urn)) {
-    urn <- purrr::pluck(x$work$translation, attr_getter("urn"))
-  }
-  return(urn)
+get_urns <- function(x) {
+  urns <- purrr::modify_depth(x, 2, purrr::attr_getter("urn")) %>%
+    purrr::flatten() %>%
+    purrr::keep(~ !is.null(.)) %>%
+    purrr::flatten_chr()
+  return(urns)
 }
 
-get_title <- function(x) {
-  title <- x$work$title[[1]]
-  return(title)
+#get_titles <- function(x) {
+#  titles <- purrr::modify_depth(s3, 1, ~.$title)
+#  titles <- purrr::map(titles, ~.[[1]]) %>% purrr::discard(~is.null(.))
+#  return(titles)
+#}
+
+get_labels <- function(x) {
+  labels <- purrr::map(purrr::flatten(x), ~.["label"]) %>%
+    purrr::flatten() %>%
+    purrr::flatten() %>%
+    purrr::flatten() %>%
+    purrr::keep(~!is.na(.)) %>%
+    purrr::flatten_chr()
+  return(labels)
 }
 
-get_label <- function(x) {
-  label <- x$work$edition$label[[1]]
-  if (is.null(label)) {
-    label <- x$work$translation$label[[1]]
-  }
-  return(label)
+get_descriptions <- function(x) {
+  descriptions <- purrr::map(purrr::flatten(x), ~.["description"]) %>%
+    purrr::flatten() %>%
+    purrr::flatten() %>%
+    purrr::flatten() %>%
+    purrr::keep(~!is.na(.)) %>%
+    purrr::flatten_chr()
+  return(descriptions)
 }
 
-get_description <- function(x) {
-  description <- x$work$edition$description[[1]]
-  if (is.null(description)) {
-    description <- x$work$translation$description[[1]]
-  }
-  return(description)
+get_languages <- function(x) {
+  urns <- purrr::modify_depth(x, 2, purrr::attr_getter("urn")) %>%
+    purrr::map(make.names) %>%
+    purrr::map(~.[-1]) %>%
+    purrr::keep(~ length(.) > 0) %>%
+    purrr::flatten_chr() %>%
+    purrr::keep( ~ nchar(.) > 5)
+  lang_regex <- "eng|lat|grc|heb"
+  lang_parts <- stringr::str_sub(urns, start = -4L)
+  langs <- stringr::str_extract(lang_parts, lang_regex)
+  return(langs)
 }
 
-eng_available <- function(x) {
-  eng <- TRUE
-  eng_check <- attributes(x$work$translation)$lang
-  if (is.null(eng_check)) {
-    eng <- FALSE
-  }
-  eng
-}
+
+#eng_available <- function(x) {
+#  eng <- TRUE
+#  eng_check <- attributes(x$work$translation)$lang
+#  if (is.null(eng_check)) {
+#    eng <- FALSE
+#  }
+#  eng
+#}
+
+#replace_with_eng <- function(x) {
+#  gsub("grc|lat|heb", "eng", x)
+#}
 
 get_catalog_data <- function(x) {
   tibble::tibble(
-    urn = get_urn(x),
-    title = x$work$title[[1]],
-    label = get_label(x),
-    description = get_description(x),
-    lang = attributes(x$work)$lang,
-    english_translation_available = eng_available(x)
+    urn = get_urns(x),
+    #title = x$work$title[[1]],
+    label = get_labels(x),
+    description = get_descriptions(x),
+    #language = attributes(x$work)$lang,
+    language = get_languages(x)
   )
 }
 
@@ -73,14 +96,33 @@ iterate_and_get_catalog_data <- function(x) {
   return(df)
 }
 
-perseus_xml <- httr::GET("http://cts.perseids.org/api/cts/?request=GetCapabilities") %>%
-  httr::content("raw") %>%
-  xml2::read_xml() %>%
-  xml2::as_list()
+#perseus_xml <- httr::GET("http://cts.perseids.org/api/cts/?request=GetCapabilities") %>%
+#  httr::content("raw") %>%
+#  xml2::read_xml() %>%
+#  xml2::as_list()
 
-perseus_xml <- perseus_xml$reply$TextInventory
+#perseus_xml <- perseus_xml$reply$TextInventory
 
-perseus_catalog <- map_df(perseus_xml, iterate_and_get_catalog_data)
+#perseus_catalog <- purrr::map_df(perseus_xml, iterate_and_get_catalog_data)
+
+#for (i in 1:nrow(perseus_catalog)) {
+#  english <- perseus_catalog$english_translation_available[i]
+#  if (english) {
+#    urn <- replace_with_eng(perseus_catalog$urn[i])
+#    title <- perseus_catalog$title[i]
+#    label <- perseus_catalog$label[i]
+#    description <- perseus_catalog$description[i]
+#    groupname <- perseus_catalog$groupname[i]
+#    lang <- "eng"
+#    perseus_catalog <- tibble::add_row(perseus_catalog,
+#                                       urn = urn,
+#                                       title = title,
+#                                       label = label,
+#                                       description = description,
+#                                       lang = lang,
+#                                       groupname = groupname)
+#  }
+#}
 
 #get_perseus_catalog <- function() {
 #  options(warn = -1)
@@ -122,3 +164,8 @@ perseus_catalog <- map_df(perseus_xml, iterate_and_get_catalog_data)
 #  return(perseus_catalog)
 #}
 
+
+#for (i in 1:length(perseus_xml)) {
+#  print(i)
+#  df <- iterate_and_get_catalog_data(perseus_xml[[i]])
+#}
