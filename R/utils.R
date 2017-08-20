@@ -49,7 +49,3 @@ extract_text <- function(url) {
   text_df <- data_frame(text = text) %>% filter(text != "")
   return(text_df)
 }
-
-replace_char_by_index <- function(string, index, replacement) {
-  gsub(" ", "", paste(substring(string, 1, index-1), replacement, substring(string, index+1, nchar(string))))
-}
