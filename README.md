@@ -25,46 +25,54 @@ devtools::install_github("daranzolin/rperseus")
 Usage
 =====
 
-To obtain a particular text, you must first know its full Uniform Resource Name (urn). Urns can be accessed with a call to `get_perseus_catalog`. For example, say I want to see the opening Latin text of Virgil's *Aeneid*:
+To obtain a particular text, you must first know its full Uniform Resource Name (URN). URNs can be perused in the `perseus_catalog`, a data frame lazily loaded into the package. For example, say I want to see the opening Latin text of Virgil's *Aeneid*:
 
 ``` r
 library(tidyverse)
 library(rperseus)
 
-aeneid_urn <- perseus_catalog %>% 
+aeneid_latin <- perseus_catalog %>% 
   filter(groupname == "Virgil",
-         label == "Aeneid") %>% 
-  .$urn
-
-aeneid <- get_perseus_text(urn = aeneid_urn, language = "lat", text = "1.1")
-aeneid$text
-#> [1] "Arma virumque cano, Troiae qui primus ab oris"
+         label == "Aeneid",
+         language == "lat") %>% 
+  pull(urn) %>% 
+  get_perseus_text()
 ```
 
-You can request the English translation by changing the `language` argument:
+You can request the English translation by filtering the English translation:
 
 ``` r
-aeneid_eng <- get_perseus_text(aeneid_urn, "eng", "1.1")
-aeneid_eng$text
-#> [1] "Arms and the man I sing, who first made way, predestined exile, from the Trojan shore to Italy , the blest Lavinian strand. Smitten of storms he was on land and sea by violence of Heaven, to satisfy stern Juno's sleepless wrath; and much in war he suffered, seeking at the last to found the city, and bring o'er his fathers' gods to safe abode in Latium ; whence arose the Latin race, old Alba's reverend lords, and from her hills wide-walled, imperial Rome ."
+aeneid_english <- perseus_catalog %>% 
+  filter(groupname == "Virgil",
+         label == "Aeneid",
+         language == "eng") %>% 
+  pull(urn) %>% 
+  get_perseus_text()
 ```
 
-As you can see, the amount of text returned for each language is unstable. To get the equivilent amount of Latin from that passage, you could set the text argument to "1.1-1.7". Furthermore, the indexing scheme varies from work to work. The API can require combinations like "1.1-1.5", "1-7", or even "21a-25a". You may have to visit the actual page from time to time to check the scheme.
+English translations are not available for every text. Refer to the language variable in `perseus_catalog`.
 
-To obtain the entire work, leave the text argument NULL. Here's how to retrieve the full greek text from Sophocles' underrated *Philoctetes*:
+Here I obtain all of Plato's works that have English translations available:
 
 ``` r
-philoctetes <- perseus_catalog %>% 
-  filter(groupname == "Sophocles",
-         label == "Philoctetes") %>% 
-  .$urn %>%
-  get_perseus_text("grc")
+plato <- perseus_catalog %>% 
+  filter(groupname == "Plato",
+         language == "eng") %>% 
+  pull(urn) %>% 
+  map_df(get_perseus_text)
 ```
 
-And with the text in hand, you can unleash the tidytext tool kit:
+Here's how to retrieve the full greek text from Sophocles' underrated *Philoctetes* and unleash the `tidytext` toolkit:
 
 ``` r
 library(tidytext)
+
+philoctetes <- perseus_catalog %>% 
+  filter(groupname == "Sophocles",
+         label == "Philoctetes",
+         language == "grc") %>% 
+  pull(urn) %>%
+  get_perseus_text()
 
 philoctetes %>% 
   unnest_tokens(word, text) %>% 
@@ -85,4 +93,4 @@ philoctetes %>%
 #> # ... with 3,657 more rows
 ```
 
-While there's no obvious way to filter out the Greek stop words and prepositions or recognize the various moods and tenses of Greek verbs, there's still fun to be had.
+While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, there's still fun to be had!
