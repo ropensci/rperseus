@@ -11,7 +11,7 @@ vignette: >
 
 ### Introduction
 
-The workhorse of `rperseus` is `get_perseus_text`. You can pass three arguments to his function: `urn`, `language`, and `text`. `language` defaults to "eng" (English) and the `text` argument defaults to `NULL`. URNs (Uniform Resource Number) can be located within the `perseus_catalog` object, which is lazily loaded on `library(rperseus)`. I recommend scanning the catalog before selecting a text.
+The workhorse of `rperseus` is `get_perseus_text`. You pass one argument to this function: `text_urn`. URNs (Uniform Resource Number) can be located within the `perseus_catalog` object, which is lazily loaded on `library(rperseus)`. I recommend scanning the catalog before selecting a text.
 
 ```{r}
 library(rperseus)
@@ -27,37 +27,23 @@ count(perseus_catalog, groupname, sort = TRUE)
 
 ### Getting a Text
 
-Once you've identified the relevant urn, paste it into a call to `get_perseus_text`. Pay attention to the `language` argument. English translations are not always available. Here I've called for the Greek text of Plutarch's *Romulus*:
+Once you've identified the relevant urn, paste it into a call to `get_perseus_text`. Here I've called for the Greek text of Plato's *Crito*:
 
 ```{r}
-romulus <- get_perseus_text(urn = "urn:cts:greekLit:tlg0007.tlg002", language = "grc")
-romulus$text[1]
+crito <- get_perseus_text(text_urn = "urn:cts:greekLit:tlg0059.tlg003.perseus-grc2")
+crito$text[1]
 ```
-
-### Precision Querying
-
-It's possible to query specific pericopes of a text, but the index scheme is someone unpredictable. Here I indicate I want the opening line of Virgil's *Aeneid*:
-
-```{r}
-aeneid <- perseus_catalog %>% 
-  filter(groupname == "Virgil",
-         label == "Aeneid") %>% 
-  .$urn %>% 
-  get_perseus_text(language = "lat", text = "1.1")
-aeneid$text
-```
-
-You may need to [refer to the website for a specific indexing scheme.](http://cts.perseids.org/read/latinLit/phi0690/phi003/perseus-lat2)
 
 ### Getting a Group of Texts
 
-You can collect all of Aristotle's available works with the `tidyverse:`
+You can collect all of Plato's available translations with the `tidyverse:`
 
 ```{r eval = FALSE}
-aristotle <- perseus_catalog %>% 
-  filter(groupname == "Aristotle") %>% 
+plato <- perseus_catalog %>% 
+  filter(groupname == "Plato",
+         language == "eng") %>% 
   pull(urn) %>% 
-  map_df(get_perseus_text, "grc")
+  map_df(get_perseus_text)
 ```
 
 
