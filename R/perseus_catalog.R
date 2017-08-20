@@ -10,12 +10,6 @@ get_urns <- function(x) {
   return(urns)
 }
 
-#get_titles <- function(x) {
-#  titles <- purrr::modify_depth(s3, 1, ~.$title)
-#  titles <- purrr::map(titles, ~.[[1]]) %>% purrr::discard(~is.null(.))
-#  return(titles)
-#}
-
 get_labels <- function(x) {
   labels <- purrr::map(purrr::flatten(x), ~.["label"]) %>%
     purrr::flatten() %>%
@@ -49,20 +43,6 @@ get_languages <- function(x) {
   return(langs)
 }
 
-
-#eng_available <- function(x) {
-#  eng <- TRUE
-#  eng_check <- attributes(x$work$translation)$lang
-#  if (is.null(eng_check)) {
-#    eng <- FALSE
-#  }
-#  eng
-#}
-
-#replace_with_eng <- function(x) {
-#  gsub("grc|lat|heb", "eng", x)
-#}
-
 get_catalog_data <- function(x) {
   tibble::tibble(
     urn = get_urns(x),
@@ -95,77 +75,3 @@ iterate_and_get_catalog_data <- function(x) {
   df <- dplyr::mutate(df, groupname = groupname)
   return(df)
 }
-
-#perseus_xml <- httr::GET("http://cts.perseids.org/api/cts/?request=GetCapabilities") %>%
-#  httr::content("raw") %>%
-#  xml2::read_xml() %>%
-#  xml2::as_list()
-
-#perseus_xml <- perseus_xml$reply$TextInventory
-
-#perseus_catalog <- purrr::map_df(perseus_xml, iterate_and_get_catalog_data)
-
-#for (i in 1:nrow(perseus_catalog)) {
-#  english <- perseus_catalog$english_translation_available[i]
-#  if (english) {
-#    urn <- replace_with_eng(perseus_catalog$urn[i])
-#    title <- perseus_catalog$title[i]
-#    label <- perseus_catalog$label[i]
-#    description <- perseus_catalog$description[i]
-#    groupname <- perseus_catalog$groupname[i]
-#    lang <- "eng"
-#    perseus_catalog <- tibble::add_row(perseus_catalog,
-#                                       urn = urn,
-#                                       title = title,
-#                                       label = label,
-#                                       description = description,
-#                                       lang = lang,
-#                                       groupname = groupname)
-#  }
-#}
-
-#get_perseus_catalog <- function() {
-#  options(warn = -1)
-#
-#  parse_nested_xml <- function(x) {
-#    attr <- c(attributes(x), attributes(x$work))
-#    items <- unlist(x)
-#    c(attr, items) %>%
-#      purrr::discard( ~length(.) > 1) %>%
-#      data.frame()
-#  }
-#
-#  parse_perseus_xml <- function(x) {
-#    works <- sum(attributes(x)$names == "work")
-#    if (works > 1) {
-#      dat <- purrr::map_df(x, parse_nested_xml) %>%
-#        dplyr::select(1:3, 6:7)
-#    } else {
-#      dat <- parse_nested_xml(x) %>%
-#        dplyr::select(1:3, 6:7)
-#    }
-#    names(dat) <- c("lang", "groupname", "urn", "label", "description")
-#    return(dat)
-#  }
-#
-#  perseus_xml <- httr::GET("http://cts.perseids.org/api/cts/?request=GetCapabilities") %>%
-#    httr::content("raw") %>%
-#    xml2::read_xml() %>%
-#    xml2::as_list()
-#  return(perseus_xml)
-#}
-#
-#  perseus_catalog <- perseus_xml %>%
-#    purrr::keep(~ "work" %in% names(.)) %>%
-#    purrr::map_df(parse_perseus_xml) %>%
-#    tidyr::fill(groupname) %>%
-#    dplyr::filter(stats::complete.cases(.),
-#           nchar(lang) == 3)
-#  return(perseus_catalog)
-#}
-
-
-#for (i in 1:length(perseus_xml)) {
-#  print(i)
-#  df <- iterate_and_get_catalog_data(perseus_xml[[i]])
-#}

@@ -1,6 +1,6 @@
-#' Get a primary text by urn.
+#' Get a primary text by URN.
 #'
-#' @param text_urn resource number obtained from perseus_catalog
+#' @param text_urn Valid uniform resource number (URN) obtained from perseus_catalog.
 #'
 #' @return a seven column tbl_df
 #' @import dplyr

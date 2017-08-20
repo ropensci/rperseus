@@ -2,18 +2,18 @@
 % Please edit documentation in R/get_perseus_text.R
 \name{get_perseus_text}
 \alias{get_perseus_text}
-\title{Get a primary text by urn.}
+\title{Get a primary text by URN.}
 \usage{
 get_perseus_text(text_urn)
 }
 \arguments{
-\item{text_urn}{resource number obtained from perseus_catalog}
+\item{text_urn}{Valid uniform resource number (URN) obtained from perseus_catalog.}
 }
 \value{
 a seven column tbl_df
 }
 \description{
-Get a primary text by urn.
+Get a primary text by URN.
 }
 \examples{
 \dontrun{
