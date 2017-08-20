@@ -9,12 +9,12 @@ License: MIT
 ![](http://www.infobiblio.es/wp-content/uploads/2015/06/perseus-logo.png)
 
 Description
-===========
+-----------
 
 `rperseus` taps into the API end points at the [Perseus Digital Library's](http://www.perseus.tufts.edu/hopper/) CapiTainS environment. A wealth of primary texts and translations are available, from Homer to Cicero to Boetheius.
 
 Installation
-============
+------------
 
 `rperseus` is not on CRAN, but can be installed via:
 
@@ -23,9 +23,9 @@ devtools::install_github("daranzolin/rperseus")
 ```
 
 Usage
-=====
+-----
 
-To obtain a particular text, you must first know its full Uniform Resource Name (URN). URNs can be perused in the `perseus_catalog`, a data frame lazily loaded into the package. For example, say I want to see the opening Latin text of Virgil's *Aeneid*:
+To obtain a particular text, you must first know its full Uniform Resource Name (URN). URNs can be perused in the `perseus_catalog`, a data frame lazily loaded into the package. For example, say I want a copy of Virgil's *Aeneid*:
 
 ``` r
 library(tidyverse)
@@ -39,7 +39,7 @@ aeneid_latin <- perseus_catalog %>%
   get_perseus_text()
 ```
 
-You can request the English translation by filtering the English translation:
+You can also request an English translation for some texts:
 
 ``` r
 aeneid_english <- perseus_catalog %>% 
@@ -50,9 +50,12 @@ aeneid_english <- perseus_catalog %>%
   get_perseus_text()
 ```
 
-English translations are not available for every text. Refer to the language variable in `perseus_catalog`.
+Refer to the language variable in `perseus_catalog` for translation availability.
 
-Here I obtain all of Plato's works that have English translations available:
+tidyverse and tidytext
+----------------------
+
+`rperseus` plays well with the `tidyverse` and `tidytext`. Here I obtain all of Plato's works that have English translations available:
 
 ``` r
 plato <- perseus_catalog %>% 
@@ -62,7 +65,7 @@ plato <- perseus_catalog %>%
   map_df(get_perseus_text)
 ```
 
-Here's how to retrieve the full greek text from Sophocles' underrated *Philoctetes* and unleash the `tidytext` toolkit:
+And here's how to retrieve the Greek text from Sophocles' underrated *Philoctetes* before unleashing the `tidytext` toolkit:
 
 ``` r
 library(tidytext)
@@ -93,4 +96,4 @@ philoctetes %>%
 #> # ... with 3,657 more rows
 ```
 
-While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, there's still fun to be had!
+While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!
