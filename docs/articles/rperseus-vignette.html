@@ -75,7 +75,7 @@
       <h1>rperseus Vignette</h1>
                         <h4 class="author">David Ranzolin</h4>
             
-            <h4 class="date">2017-08-13</h4>
+            <h4 class="date">2017-08-21</h4>
           </div>
 
     
@@ -84,77 +84,55 @@
 <div id="introduction" class="section level3">
 <h3 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h3>
-<p>The workhorse of <code>rperseus</code> is <code>get_perseus_text</code>. You can pass three arguments to his function: <code>urn</code>, <code>language</code>, and <code>text</code>. <code>language</code> defaults to “eng” (English) and the <code>text</code> argument defaults to <code>NULL</code>. URNs (Uniform Resource Number) can be located within the <code>perseus_catalog</code> object, which is lazily loaded on <code>library(rperseus)</code>. I recommend scanning the catalog before selecting a text.</p>
+<p>The workhorse of <code>rperseus</code> is <code>get_perseus_text</code>. You pass one argument to this function: <code>text_urn</code>. URNs (Uniform Resource Number) can be located within the <code>perseus_catalog</code> object, which is lazily loaded on <code>library(rperseus)</code>. I recommend scanning the catalog before selecting a text.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rperseus)
 <span class="kw">head</span>(perseus_catalog)</code></pre></div>
-<pre><code>##   lang                         groupname
-## 1  lat                        SS Felix I
-## 2  lat                        SS Felix I
-## 3  lat Pseudo-Cyprian active 3rd century
-## 4  lat Pseudo-Cyprian active 3rd century
-## 5  lat Pseudo-Cyprian active 3rd century
-## 6  lat Pseudo-Cyprian active 3rd century
-##                                  urn                                label
-## 1 urn:cts:latinLit:stoa0121i.stoa002                   Epistolae [Dubiae]
-## 2 urn:cts:latinLit:stoa0121i.stoa003                 Epistolae Et Decreta
-## 3 urn:cts:latinLit:stoa0104p.stoa010                Liber de rebaptismate
-## 4 urn:cts:latinLit:stoa0104p.stoa006                  De duplici Martyrio
-## 5 urn:cts:latinLit:stoa0104p.stoa001 Tractatus ad Novantianum Haereticoum
-## 6 urn:cts:latinLit:stoa0104p.stoa013                       De Spectaculis
-##                                              description
-## 1                         SS Felix I, Epistolae [Dubiae]
-## 2                       SS Felix I, Epistolae Et Decreta
-## 3     Pseudo-Cyprian active 3rd century, De Rebaptismate
-## 4 Pseudo-Cyprian active 3rd century, De duplici Martyrio
-## 5       Pseudo-Cyprian active 3rd century, Ad Novatianum
-## 6      Pseudo-Cyprian active 3rd century, De Spectaculis</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##                                           urn
+##                                         &lt;chr&gt;
+## 1 urn:cts:latinLit:stoa0215b.stoa001.opp-lat1
+## 2 urn:cts:latinLit:stoa0215b.stoa002.opp-lat1
+## 3 urn:cts:latinLit:stoa0215b.stoa003.opp-lat1
+## 4    urn:cts:latinLit:phi9500.phi035.opp-lat1
+## 5   urn:cts:latinLit:tmp1347.tmp1347.opp-lat1
+## 6  urn:cts:greekLit:tlg0082.tlg004.1st1K-grc1
+## # ... with 4 more variables: groupname &lt;chr&gt;, label &lt;chr&gt;,
+## #   description &lt;chr&gt;, language &lt;chr&gt;</code></pre>
 <p>A snapshot of available authors:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">count</span>(perseus_catalog, groupname, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## # A tibble: 122 x 2
-##                      groupname     n
-##                          &lt;chr&gt; &lt;int&gt;
-##  1                    Libanius   103
-##  2                       Galen    95
-##  3                  Augustinus    63
-##  4                 Hippocrates    53
-##  5                      Cicero    44
-##  6 Catenae (Novum Testamentum)    33
-##  7                      Lysias    33
-##  8               Philo Judaeus    31
-##  9                       Plato    31
-## 10                   Isocrates    30
-## # ... with 112 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">count</a></span>(perseus_catalog, groupname, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## # A tibble: 347 x 2
+##        groupname     n
+##            &lt;chr&gt; &lt;int&gt;
+##  1      Libanius   103
+##  2         Galen   101
+##  3  Hebrew Bible    79
+##  4    Augustinus    70
+##  5        Lysias    68
+##  6 Homeric Hymns    66
+##  7       Mishnah    63
+##  8         Plato    62
+##  9     Isocrates    60
+## 10    Hieronymus    56
+## # ... with 337 more rows</code></pre>
 </div>
 <div id="getting-a-text" class="section level3">
 <h3 class="hasAnchor">
 <a href="#getting-a-text" class="anchor"></a>Getting a Text</h3>
-<p>Once you’ve identified the relevant urn, paste it into a call to <code>get_perseus_text</code>. Pay attention to the <code>language</code> argument. English translations are not always available. Here I’ve called for the Greek text of Plutarch’s <em>Romulus</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">romulus &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_perseus_text.html">get_perseus_text</a></span>(<span class="dt">urn =</span> <span class="st">"urn:cts:greekLit:tlg0007.tlg002"</span>, <span class="dt">language =</span> <span class="st">"grc"</span>)
-romulus$text[<span class="dv">1</span>]</code></pre></div>
-<pre><code>## [1] "τὸ μέγα τῆς Ῥώμης ὄνομα καὶ δόξῃ διὰ πάντων ἀνθρώπων κεχωρηκὸς ἀφʼ ὅτου καὶ διʼ ἣν αἰτίαν τῇ πόλει γέγονεν, οὐχ ὡμολόγηται παρὰ τοῖς συγγραφεῦσιν, ἀλλʼ οἱ μὲν Πελασγούς, ἐπὶ πλεῖστα τῆς οἰκουμένης πλανηθέντας ἀνθρώπων τε πλείστων κρατήσαντας, αὐτόθι κατοικῆσαι, καὶ διὰ τὴν ἐν τοῖς ὅπλοις ῥώμην οὕτως ὀνομάσαι τὴν πόλιν, οἱ δὲ Τροίας ἁλισκομένης διαφυγόντας ἐνίους καὶ πλοίων ἐπιτυχόντας ὑπὸ πνευμάτων τῇ Τυρρηνίᾳ προσπεσεῖν φερομένους, καὶ περὶ τὸν Θύμβριν ποταμὸν ὁρμίσασθαι· ταῖς δὲ γυναιξὶν αὐτῶν, ἀπορουμέναις ἤδη καὶ δυσανασχετούσαις πρὸς τὴν θάλασσαν, ὑποθέσθαι μίαν, ἣ καὶ γένει προὔχειν καὶ φρονεῖν ἐδόκει μάλιστα, Ῥώμην ὄνομα, καταπρῆσαι τὰ πλοῖα. πραχθέντος δὲ τούτου, πρῶτον μὲν ἀγανακτεῖν τοὺς ἄνδρας, ἔπειτα διʼ ἀνάγκην ἱδρυνθέντας περὶ τὸ Παλλάντιον, ὡς ὀλίγῳ χρόνῳ κρεῖττον ἐλπίδος ἔπραττον, ἀγαθῆς τε πειρώμενοι χώρας καὶ δεχομένων αὐτοὺς τῶν προσοίκων, ἄλλην τε τιμὴν ἀπονέμειν τῇ Ῥώμῃ καὶ τὴν πόλιν ἀπʼ αὐτῆς ὡς αἰτίας προσαγορεύειν. ἐξ ἐκείνου τε παραμένειν λέγουσι τὸ τοὺς συγγενεῖς τὰς γυναῖκας καὶ οἰκείους ἄνδρας ἀσπάζεσθαι τοῖς στόμασι· καὶ γὰρ ἐκείνας, ὅτε τὰ πλοῖα κατέπρησαν, οὕτως ἀσπάζεσθαι καὶ φιλοφρονεῖσθαι τοὺς ἄνδρας, δεομένας αὐτῶν καὶ παραιτουμένας τὴν ὀργήν."</code></pre>
+<p>Once you’ve identified the relevant URN, paste it into a call to <code>get_perseus_text</code>. Here I’ve called for the Greek text of Plato’s <em>Crito</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crito &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_perseus_text.html">get_perseus_text</a></span>(<span class="dt">text_urn =</span> <span class="st">"urn:cts:greekLit:tlg0059.tlg003.perseus-grc2"</span>)
+crito$text[<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] "ΣΩ. τί τηνικάδε ἀφῖξαι, ὦ Κρίτων; ἢ οὐ πρῲ ἔτι ἐστίν; ΚΡ. πάνυ μὲν οὖν. ΣΩ. πηνίκα μάλιστα; ΚΡ. ὄρθρος βαθύς. ΣΩ. θαυμάζω ὅπως ἠθέλησέ σοι ὁ τοῦ δεσμωτηρίου φύλαξ ὑπακοῦσαι. ΚΡ. συνήθης ἤδη μοί ἐστιν, ὦ Σώκρατες, διὰ τὸ πολλάκις δεῦρο φοιτᾶν, καί τι καὶ εὐεργέτηται ὑπʼ ἐμοῦ. ΣΩ. ἄρτι δὲ ἥκεις ἢ πάλαι; ΚΡ. ἐπιεικῶς πάλαι. ΣΩ. εἶτα πῶς οὐκ εὐθὺς ἐπήγειράς με, ἀλλὰ σιγῇ παρακάθησαι; ΚΡ. οὐ μὰ τὸν Δία, ὦ Σώκρατες, οὐδʼ ἂν αὐτὸς ἤθελον ἐν τοσαύτῃ τε ἀγρυπνίᾳ καὶ λύπῃ εἶναι, ἀλλὰ καὶ σοῦ πάλαι θαυμάζω αἰσθανόμενος ὡς ἡδέως καθεύδεις· καὶ ἐπίτηδές σε οὐκ ἤγειρον ἵνα ὡς ἥδιστα διάγῃς. καὶ πολλάκις μὲν δή σε καὶ πρότερον ἐν παντὶ τῷ βίῳ ηὐδαιμόνισα τοῦ τρόπου, πολὺ δὲ μάλιστα ἐν τῇ νῦν παρεστώσῃ συμφορᾷ, ὡς ῥᾳδίως αὐτὴν καὶ πρᾴως φέρεις. ΣΩ. καὶ γὰρ ἄν, ὦ Κρίτων, πλημμελὲς εἴη ἀγανακτεῖν τηλικοῦτον ὄντα εἰ δεῖ ἤδη τελευτᾶν. ΚΡ. καὶ ἄλλοι, ὦ Σώκρατες, τηλικοῦτοι ἐν τοιαύταις συμφοραῖς ἁλίσκονται, ἀλλʼ οὐδὲν αὐτοὺς ἐπιλύεται ἡ ἡλικία τὸ μὴ οὐχὶ ἀγανακτεῖν τῇ παρούσῃ τύχῃ. ΣΩ. ἔστι ταῦτα. ἀλλὰ τί δὴ οὕτω πρῲ ἀφῖξαι; ΚΡ. ἀγγελίαν, ὦ Σώκρατες, φέρων χαλεπήν, οὐ σοί, ὡς ἐμοὶ φαίνεται, ἀλλʼ ἐμοὶ καὶ τοῖς σοῖς ἐπιτηδείοις πᾶσιν καὶ χαλεπὴν καὶ βαρεῖαν, ἣν ἐγώ, ὡς ἐμοὶ δοκῶ, ἐν τοῖς βαρύτατʼ ἂν ἐνέγκαιμι. ΣΩ. τίνα ταύτην; ἢ τὸ πλοῖον ἀφῖκται ἐκ Δήλου, οὗ δεῖ ἀφικομένου τεθνάναι με; ΚΡ. οὔτοι δὴ ἀφῖκται, ἀλλὰ δοκεῖν μέν μοι ἥξει τήμερον ἐξ ὧν ἀπαγγέλλουσιν ἥκοντές τινες ἀπὸ Σουνίου καὶ καταλιπόντες ἐκεῖ αὐτό. δῆλον οὖν ἐκ τούτων τῶν ἀγγέλων ὅτι ἥξει τήμερον, καὶ ἀνάγκη δὴ εἰς αὔριον ἔσται, ὦ Σώκρατες, τὸν βίον σε τελευτᾶν. ΣΩ. ἀλλʼ, ὦ Κρίτων, τύχῃ ἀγαθῇ, εἰ ταύτῃ τοῖς θεοῖς φίλον, ταύτῃ ἔστω· οὐ μέντοι οἶμαι ἥξειν αὐτὸ τήμερον."</code></pre>
 </div>
-<div id="precision-querying" class="section level3">
+<div id="getting-multiple-texts-with-the-tidyverse" class="section level3">
 <h3 class="hasAnchor">
-<a href="#precision-querying" class="anchor"></a>Precision Querying</h3>
-<p>It’s possible to query specific pericopes of a text, but the index scheme is someone unpredictable. Here I indicate I want the opening line of Virgil’s <em>Aeneid</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aeneid &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(groupname ==<span class="st"> "Virgil"</span>,
-         label ==<span class="st"> "Aeneid"</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span>.$urn %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/get_perseus_text.html">get_perseus_text</a></span>(<span class="dt">language =</span> <span class="st">"lat"</span>, <span class="dt">text =</span> <span class="st">"1.1"</span>)
-aeneid$text</code></pre></div>
-<pre><code>## [1] "Arma virumque cano, Troiae qui primus ab oris"</code></pre>
-<p>You may need to <a href="http://cts.perseids.org/read/latinLit/phi0690/phi003/perseus-lat2">refer to the website for a specific indexing scheme.</a></p>
-</div>
-<div id="getting-a-group-of-texts" class="section level3">
-<h3 class="hasAnchor">
-<a href="#getting-a-group-of-texts" class="anchor"></a>Getting a Group of Texts</h3>
-<p>You can collect all of Aristotle’s available works with the <code>tidyverse:</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aristotle &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(groupname ==<span class="st"> "Aristotle"</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">pull</span>(urn) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">map_df</span>(get_perseus_text, <span class="st">"grc"</span>)</code></pre></div>
+<a href="#getting-multiple-texts-with-the-tidyverse" class="anchor"></a>Getting Multiple Texts with the tidyverse</h3>
+<p>You can collect all of Plato’s available English translations with the <code>tidyverse:</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plato &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(groupname ==<span class="st"> "Plato"</span>,
+         language ==<span class="st"> "eng"</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(urn) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">map_df</span>(get_perseus_text)</code></pre></div>
 </div>
 </div>
   </div>
