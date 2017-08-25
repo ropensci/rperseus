@@ -1,8 +1,8 @@
 Package: rperseus
-Title: Gets texts from the Perseus Digital Library
+Title: Get texts from the Perseus Digital Library
 Version: 0.0.0.9000
 Authors@R: person("David", "Ranzolin", email = "daranzolin@gmail.com", role = c("aut", "cre"))
-Description: Perseus is a collection of primary source texts. This package helps
+Description: The Perseus Digital Library is a collection of classical texts. This package helps
     you get them.
 Depends:
     R (>= 3.3.0)
@@ -15,10 +15,7 @@ Imports:
     xml2,
     dplyr,
     purrr,
-    rvest,
-    tidyr,
-    stats,
-    tibble
+    rvest
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
