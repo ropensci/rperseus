@@ -1,10 +1,6 @@
 reformat_urn <- function(urn) {
   urn <- gsub("urn:cts:|urn.cts.", "", urn)
   urn <- gsub("[:.]", "/", urn)
-  #if(stringr::str_detect(urn, "hebrew")) {
-  #sp <- gregexpr("/", urn)[[1]][4]
-  #urn <- paste(substring(urn, 1, sp-1), "-", substring(urn, sp+1, nchar(urn)))
-  #urn <- gsub(" ", "", urn)
   return(urn)
 }
 
