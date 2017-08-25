@@ -30,7 +30,8 @@ get_full_text_index <- function(new_urn) {
 extract_text <- function(url) {
 
   r <- httr::GET(url,
-                 httr::user_agent("rperseus - https://github.com/daranzolin/rperseus")
+                 httr::user_agent(
+                   "rperseus - https://github.com/daranzolin/rperseus")
                  )
   if (r$status_code == 500) stop("Nothing available for that URN.")
   r_list <- r %>%
@@ -38,7 +39,8 @@ extract_text <- function(url) {
     xml2::read_xml() %>%
     xml2::as_list()
 
-  text <- purrr::map(r_list$reply$passage$TEI$text$body$div, ~paste(unlist(.), collapse = " "))
+  text <- purrr::map(r_list$reply$passage$TEI$text$body$div,
+                     ~paste(unlist(.), collapse = " "))
   text <- gsub("\\s+", " ", text)
   text <- gsub("\\*", "", text)
   text <- stringr::str_trim(text)

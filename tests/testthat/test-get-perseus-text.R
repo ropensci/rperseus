@@ -13,9 +13,7 @@ test_that("Can download Aristotle's Physica", {
 test_that("Unaccounted for URNs throw error", {
   skip_on_cran()
 
-  expect_error(get_perseus_text(text_urn = "wrong urn"),
-               "invalid text_urn argument: check perseus_catalog for valid URNs")
+  expect_error(
+    get_perseus_text(text_urn = "wrong urn"),
+    "invalid text_urn argument: check perseus_catalog for valid URNs")
 })
-
-
-
