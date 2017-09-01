@@ -1,11 +1,9 @@
 context("get_perseus_text")
 
-library(stringr)
-
 test_that("Can download Aristotle's Physica", {
   skip_on_cran()
 
-  aristotle <- get_perseus_text("urn:cts:greekLit:tlg0086.tlg031.1st1K-grc1")
+  aristotle <- get_perseus_text(text_urn = "urn:cts:greekLit:tlg0086.tlg031.1st1K-grc1")
 
   expect_is(aristotle, "tbl_df")
 })
