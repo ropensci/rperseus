@@ -22,7 +22,7 @@ A snapshot of available authors:
 
 ```{r warning=FALSE, message=FALSE}
 library(dplyr)
-count(perseus_catalog, groupname, sort = TRUE)
+count(perseus_catalog, group_name, sort = TRUE)
 ```
 
 ### Getting a Text
@@ -40,7 +40,7 @@ You can collect all of Plato's available English translations with the `tidyvers
 
 ```{r eval = FALSE}
 plato <- perseus_catalog %>% 
-  filter(groupname == "Plato",
+  filter(group_name == "Plato",
          language == "eng") %>% 
   pull(urn) %>% 
   map_df(get_perseus_text)
