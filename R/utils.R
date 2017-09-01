@@ -58,6 +58,7 @@ extract_text <- function(text_url) {
                    "rperseus - https://github.com/daranzolin/rperseus")
                  )
   if (res$status_code == 500) stop("Nothing available for that URN.")
+  httr::stop_for_status(res)
   r_list <- res %>%
     httr::content("raw") %>%
     xml2::read_xml() %>%
