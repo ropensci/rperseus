@@ -10,7 +10,16 @@ get_perseus_text(text_urn)
 \item{text_urn}{Valid uniform resource number (URN) obtained from perseus_catalog.}
 }
 \value{
-a seven column tbl_df
+A seven column tbl_df with one row for each "section" (splits vary from text--could be line, chapter, etc.).
+Columns:
+\describe{
+  \item{text}{character vector of text}
+  \item{urn}{Uniform Resource Number}
+  \item{group_name}{Could refer to author (e.g. "Aristotle") or corpus (e.g. "New Testament")}
+  \item{label}{Text label, e.g. "Phaedrus"}
+  \item{description}{Text description}
+  \item{language}{Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English}
+}
 }
 \description{
 Get a primary text by URN.

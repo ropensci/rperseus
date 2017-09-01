@@ -20,7 +20,7 @@ get_text_url <- function(text_urn, text_index) {
 #' of varying length. Rather than make multiple calls and iterate through smaller chunks of texts,
 #' why not get the entire work in one call?
 #'
-#' @param new_urn
+#' @param new_urn A reformatted urn
 #'
 #' @return a character index (e.g. "1-110", "1.1-4.5")
 #'
