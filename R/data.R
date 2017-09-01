@@ -5,7 +5,7 @@
 #' @format A data frame with 2291 rows and 5 variables:
 #' \describe{
 #'   \item{urn}{Uniform Resource Number}
-#'   \item{groupname}{Could refer to author (e.g. "Aristotle") or corpus (e.g. "New Testament")}
+#'   \item{group_name}{Could refer to author (e.g. "Aristotle") or corpus (e.g. "New Testament")}
 #'   \item{label}{Text label, e.g. "Phaedrus"}
 #'   \item{description}{Text description}
 #'   \item{language}{Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English}
