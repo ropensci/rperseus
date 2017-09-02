@@ -32,7 +32,7 @@ library(tidyverse)
 library(rperseus)
 
 aeneid_latin <- perseus_catalog %>% 
-  filter(groupname == "Virgil",
+  filter(group_name == "Virgil",
          label == "Aeneid",
          language == "lat") %>% 
   pull(urn) %>% 
@@ -43,7 +43,7 @@ You can also request an English translation for some texts:
 
 ``` r
 aeneid_english <- perseus_catalog %>% 
-  filter(groupname == "Virgil",
+  filter(group_name == "Virgil",
          label == "Aeneid",
          language == "eng") %>% 
   pull(urn) %>% 
@@ -59,7 +59,7 @@ tidyverse and tidytext
 
 ``` r
 plato <- perseus_catalog %>% 
-  filter(groupname == "Plato",
+  filter(group_name == "Plato",
          language == "eng") %>% 
   pull(urn) %>% 
   map_df(get_perseus_text)
@@ -71,7 +71,7 @@ And here's how to retrieve the Greek text from Sophocles' underrated *Philoctete
 library(tidytext)
 
 philoctetes <- perseus_catalog %>% 
-  filter(groupname == "Sophocles",
+  filter(group_name == "Sophocles",
          label == "Philoctetes",
          language == "grc") %>% 
   pull(urn) %>%

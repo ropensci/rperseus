@@ -75,7 +75,7 @@
       <h1>rperseus Vignette</h1>
                         <h4 class="author">David Ranzolin</h4>
             
-            <h4 class="date">2017-08-21</h4>
+            <h4 class="date">2017-09-02</h4>
           </div>
 
     
@@ -96,13 +96,13 @@
 ## 4    urn:cts:latinLit:phi9500.phi035.opp-lat1
 ## 5   urn:cts:latinLit:tmp1347.tmp1347.opp-lat1
 ## 6  urn:cts:greekLit:tlg0082.tlg004.1st1K-grc1
-## # ... with 4 more variables: groupname &lt;chr&gt;, label &lt;chr&gt;,
+## # ... with 4 more variables: group_name &lt;chr&gt;, label &lt;chr&gt;,
 ## #   description &lt;chr&gt;, language &lt;chr&gt;</code></pre>
 <p>A snapshot of available authors:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-<span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">count</a></span>(perseus_catalog, groupname, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">count</a></span>(perseus_catalog, group_name, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## # A tibble: 347 x 2
-##        groupname     n
+##       group_name     n
 ##            &lt;chr&gt; &lt;int&gt;
 ##  1      Libanius   103
 ##  2         Galen   101
@@ -129,7 +129,7 @@ crito$text[<span class="dv">1</span>]</code></pre></div>
 <a href="#getting-multiple-texts-with-the-tidyverse" class="anchor"></a>Getting Multiple Texts with the tidyverse</h3>
 <p>You can collect all of Plato’s available English translations with the <code>tidyverse:</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plato &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(groupname ==<span class="st"> "Plato"</span>,
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(group_name ==<span class="st"> "Plato"</span>,
          language ==<span class="st"> "eng"</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(urn) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">map_df</span>(get_perseus_text)</code></pre></div>
