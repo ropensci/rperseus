@@ -1,6 +1,6 @@
 reformat_urn <- function(urn) {
-  urn <- stringr::str_replace(urn, "urn:cts:|urn.cts.", "")
-  stringr::str_replace_all(urn, "[:.]", "/")
+  stringr::str_replace(urn, "urn:cts:|urn.cts.", "") %>%
+  stringr::str_replace_all("[:.]", "/")
 }
 
 get_text_url <- function(text_urn, text_index) {
@@ -65,10 +65,10 @@ extract_text <- function(text_url) {
     xml2::as_list()
 
   text <- purrr::map(r_list$reply$passage$TEI$text$body$div,
-                     ~paste(unlist(.), collapse = " "))
-  text <- gsub("\\s+", " ", text)
-  text <- gsub("\\*", "", text)
-  text <- stringr::str_trim(text)
+                     ~ paste(unlist(.), collapse = " ")) %>%
+    stringr::str_replace_all("\\s+", " ") %>%
+    stringr::str_replace_all("\\*", "") %>%
+    stringr::str_trim()
   text_df <- dplyr::data_frame(text = text) %>% dplyr::filter(text != "")
   text_df
 }
