@@ -3,7 +3,7 @@ Title: Get texts from the Perseus Digital Library
 Version: 0.0.0.9000
 Authors@R: person("David", "Ranzolin", email = "daranzolin@gmail.com", role = c("aut", "cre"))
 Description: The Perseus Digital Library is a collection of classical texts. This package helps
-    you get them.
+    you get them. The HTML stylized works can be found here: http://cts.perseids.org/.
 Depends:
     R (>= 3.3.0)
 License: MIT + file LICENSE
