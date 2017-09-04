@@ -12,7 +12,7 @@
 #'   \item{description}{Text description}
 #'   \item{language}{Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English}
 #' }
-#' @import dplyr
+#' @importFrom dplyr %>%
 #' @export
 #'
 #' @examples
