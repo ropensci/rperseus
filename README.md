@@ -28,7 +28,8 @@ Usage
 To obtain a particular text, you must first know its full Uniform Resource Name (URN). URNs can be perused in the `perseus_catalog`, a data frame lazily loaded into the package. For example, say I want a copy of Virgil's *Aeneid*:
 
 ``` r
-library(tidyverse)
+library(dplyr)
+library(purrr)
 library(rperseus)
 
 aeneid_latin <- perseus_catalog %>% 
