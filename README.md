@@ -1,12 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+rperseus
+--------
+
+------------------------------------------------------------------------
+
 [![Build Status](https://travis-ci.org/daranzolin/rperseus.svg?branch=master)](https://travis-ci.org/daranzolin/rperseus) [![codecov](https://codecov.io/gh/daranzolin/rperseus/branch/master/graph/badge.svg)](https://codecov.io/gh/daranzolin/rperseus)
+
+![](http://www.infobiblio.es/wp-content/uploads/2015/06/perseus-logo.png)
 
 Author: David Ranzolin
 
 License: MIT
-
-![](http://www.infobiblio.es/wp-content/uploads/2015/06/perseus-logo.png)
 
 Description
 -----------
