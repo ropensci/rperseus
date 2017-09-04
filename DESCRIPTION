@@ -20,7 +20,9 @@ RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
     testthat,
-    covr
+    covr,
+    roxygen2,
+    tidytext
 VignetteBuilder: knitr
 URL: https://github.com/daranzolin/rperseus
 BugReports: https://github.com/daranzolin/rperseus/issues
