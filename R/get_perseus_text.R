@@ -13,6 +13,7 @@
 #'   \item{language}{Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English}
 #' }
 #' @importFrom dplyr %>%
+#' @importFrom rlang .data
 #' @export
 #'
 #' @examples
