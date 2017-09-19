@@ -35,6 +35,6 @@ get_perseus_text <- function(text_urn) {
   df <- extract_text(text_url) %>%
     dplyr::mutate(urn = text_urn) %>%
     dplyr::left_join(internal_perseus_catalog, by = "urn") %>%
-    dplyr::mutate(section = dplyr::row_number(urn))
+    dplyr::mutate(section = dplyr::row_number(.data$urn))
   df
 }
