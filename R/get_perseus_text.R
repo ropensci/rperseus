@@ -24,8 +24,14 @@
 
 get_perseus_text <- function(text_urn) {
 
+  if (length(text_urn) > 1) {
+    stop("Please supply one valid urn.",
+         call. = FALSE)
+  }
+
   if (!text_urn %in% internal_perseus_catalog$urn) {
-    stop("invalid text_urn argument: check perseus_catalog for valid URNs")
+    stop("invalid text_urn argument: check perseus_catalog for valid URNs",
+         call. = FALSE)
   }
 
   new_urn <- reformat_urn(text_urn)

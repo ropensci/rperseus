@@ -16,7 +16,7 @@ License: MIT
 Description
 -----------
 
-`rperseus` taps into the API endpoints at the [Perseus Digital Library's](http://www.perseus.tufts.edu/hopper/) CapiTainS environment. A wealth of primary texts and translations are available, from Homer to Cicero to Boetheius.
+`rperseus` taps into the API endpoints at the [Perseus Digital Library's](http://www.perseus.tufts.edu/hopper/) CapiTainS environment. A wealth of primary texts and translations are available, from Homer to Cicero to Boetheius. The base API url is `http://cts.perseids.org/api/cts`.
 
 Installation
 ------------
