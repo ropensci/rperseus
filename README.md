@@ -103,3 +103,8 @@ philoctetes %>%
 ```
 
 While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!
+
+Contributing
+------------
+
+If you'd like to contribute to the development of `rperseus`, get acquainted with the Perseus Digital Library, fork the repo, and send a pull request.
