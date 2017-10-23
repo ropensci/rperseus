@@ -25,9 +25,6 @@ Columns:
 Get a primary text by URN.
 }
 \examples{
-\dontrun{
-get_perseus_text("urn:cts:greekLit:tlg0013.tlg028.perseus-eng2")
 get_perseus_text("urn:cts:greekLit:tlg0013.tlg028.perseus-grc2")
 get_perseus_text("urn:cts:latinLit:stoa0215b.stoa003.opp-lat1")
-}
 }

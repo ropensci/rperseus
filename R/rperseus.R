@@ -9,8 +9,4 @@
 #' @name rperseus
 #' @author David Ranzolin \email{daranzolin@@gmail.com}
 NULL
-#' Perseus Catalog
-#' @name perseus_catalog
-#' @docType data
-#' @keywords datasets
-NULL
+
