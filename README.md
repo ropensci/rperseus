@@ -35,6 +35,8 @@ devtools::install_github("daranzolin/rperseus")
 Usage
 -----
 
+[See the vignette to get started.](https://daranzolin.github.io/rperseus//articles/rperseus-vignette.html)
+
 To obtain a particular text, you must first know its full Uniform Resource Name (URN). URNs can be perused in the `perseus_catalog`, a data frame lazily loaded into the package. For example, say I want a copy of Virgil's *Aeneid*:
 
 ``` r
