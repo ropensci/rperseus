@@ -14,20 +14,11 @@ get_text_url <- function(text_urn, text_index) {
   text_url
 }
 
-#' Gets the full index of a text (start to finish)
-#'
-#' The API is flexible--you can append a text index to the end of your GET request
-#' of varying length. Rather than make multiple calls and iterate through smaller chunks of texts,
-#' why not get the entire work in one call?
-#'
-#' @param new_urn A reformatted urn
-#'
-#' @return a character index (e.g. "1-110", "1.1-4.5")
-#'
-#' @examples
-#' \dontrun{
-#' get_full_text_index("latinLit/stoa0215b/stoa003/opp-lat1")
-#' }
+# This function returns the full index of a text.
+#
+# The API is flexible--you can append a text index to the end of your GET request
+# of varying length. Rather than make multiple calls and iterate through smaller chunks of texts,
+# why not get the entire work in one call? Only useful within the package.
 get_full_text_index <- function(new_urn) {
 
   content_url <- paste("http://cts.perseids.org/read", new_urn, sep = "/")

@@ -7,10 +7,10 @@
 get_perseus_text(text_urn)
 }
 \arguments{
-\item{text_urn}{Valid uniform resource number (URN) obtained from perseus_catalog.}
+\item{text_urn}{Valid uniform resource number (URN) obtained from \code{\link{perseus_catalog}}.}
 }
 \value{
-A seven column tbl_df with one row for each "section" (splits vary from text--could be line, chapter, etc.).
+A seven column \code{tbl_df} with one row for each "section" (splits vary from text--could be line, chapter, etc.).
 Columns:
 \describe{
   \item{text}{character vector of text}
