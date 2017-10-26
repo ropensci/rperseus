@@ -71,6 +71,7 @@ tidyverse and tidytext
 `rperseus` plays well with the `tidyverse` and `tidytext`. Here I obtain all of Plato's works that have English translations available:
 
 ``` r
+library(purrr)
 plato <- perseus_catalog %>% 
   filter(group_name == "Plato",
          language == "eng") %>% 
@@ -112,7 +113,9 @@ philoctetes %>%
 
 While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!
 
-Contributing
-------------
+Meta
+----
 
-If you'd like to contribute to the development of `rperseus`, get acquainted with the Perseus Digital Library, fork the repo, and send a pull request.
+-   [Report bugs or issues here.](https://github.com/daranzolin/rperseus/issues)
+-   If you'd like to contribute to the development of `rperseus`, first get acquainted with the Perseus Digital Library, fork the repo, and send a pull request.
+-   This project is released with a [Contributor Code of Conduct.](https://github.com/daranzolin/rperseus/blob/master/CONDUCT.md) By participating in this project, you agree to abide by its terms.
