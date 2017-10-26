@@ -1,8 +1,8 @@
 #' Get a primary text by URN.
 #'
-#' @param text_urn Valid uniform resource number (URN) obtained from perseus_catalog.
+#' @param text_urn Valid uniform resource number (URN) obtained from \code{\link{perseus_catalog}}.
 #'
-#' @return A seven column tbl_df with one row for each "section" (splits vary from text--could be line, chapter, etc.).
+#' @return A seven column \code{tbl_df} with one row for each "section" (splits vary from text--could be line, chapter, etc.).
 #' Columns:
 #' \describe{
 #'   \item{text}{character vector of text}
