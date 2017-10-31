@@ -29,7 +29,7 @@ Installation
 `rperseus` is not on CRAN, but can be installed via:
 
 ``` r
-devtools::install_github("daranzolin/rperseus")
+devtools::install_github("ropensci/rperseus")
 ```
 
 Usage

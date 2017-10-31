@@ -40,7 +40,7 @@ The goal of `rperseus` is to furnish classicists, textual critics, and R enthusi
 `rperseus` is not on CRAN, but can be installed via:
 
 ```{r eval = FALSE}
-devtools::install_github("daranzolin/rperseus")
+devtools::install_github("ropensci/rperseus")
 ```
 
 ## Usage
