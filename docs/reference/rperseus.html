@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Metadata for texts available via the Perseus Digital Library. — perseus_catalog • rperseus</title>
+<title>rperseus: A package to obtain texts from the Perseus Digital Library — rperseus • rperseus</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -95,39 +95,26 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Metadata for texts available via the Perseus Digital Library.</h1>
+    <h1>rperseus: A package to obtain texts from the Perseus Digital Library</h1>
     </div>
 
     
-    <p>A dataset containing the texts available from the Perseus Digital Library.</p>
+    <p>The package contains a catalog and a function. The catalog is <code><a href='perseus_catalog.html'>perseus_catalog</a></code> and can be
+perused to locate a particular text and its corresponding URN. Then pass the URN to <code><a href='get_perseus_text.html'>get_perseus_text</a></code>
+to obtain the text.</p>
     
 
-    <pre class="usage"><span class='no'>perseus_catalog</span></pre>
         
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 2291 rows and 5 variables:</p><dl class='dl-horizontal'>
-  <dt>urn</dt><dd><p>Uniform Resource Number</p></dd>
-  <dt>group_name</dt><dd><p>Could refer to author (e.g. "Aristotle") or corpus (e.g. "New Testament")</p></dd>
-  <dt>label</dt><dd><p>Text label, e.g. "Phaedrus"</p></dd>
-  <dt>description</dt><dd><p>Text description</p></dd>
-  <dt>language</dt><dd><p>Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English</p></dd>
-</dl>
-    
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='http://cts.perseids.org/api/cts/?request=GetCapabilities'>http://cts.perseids.org/api/cts/?request=GetCapabilities</a></p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
+                </ul>
 
-      <li><a href="#source">Source</a></li>
-          </ul>
+    <h2>Author</h2>
+    
+David Ranzolin <a href='mailto:daranzolin@gmail.com'>daranzolin@gmail.com</a>
 
   </div>
 </div>

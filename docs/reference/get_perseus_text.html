@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -109,21 +109,62 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>text_urn</th>
-      <td><p>Valid uniform resource number (URN) obtained from perseus_catalog.</p></td>
+      <td><p>Valid uniform resource number (URN) obtained from <code><a href='perseus_catalog.html'>perseus_catalog</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a seven column tbl_df</p>
+    <p>A seven column <code>tbl_df</code> with one row for each "section" (splits vary from text--could be line, chapter, etc.).
+Columns:</p><dl class='dl-horizontal'>
+  <dt>text</dt><dd><p>character vector of text</p></dd>
+  <dt>urn</dt><dd><p>Uniform Resource Number</p></dd>
+  <dt>group_name</dt><dd><p>Could refer to author (e.g. "Aristotle") or corpus (e.g. "New Testament")</p></dd>
+  <dt>label</dt><dd><p>Text label, e.g. "Phaedrus"</p></dd>
+  <dt>description</dt><dd><p>Text description</p></dd>
+  <dt>language</dt><dd><p>Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English</p></dd>
+</dl>
+
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>get_perseus_text</span>(<span class='st'>"urn:cts:greekLit:tlg0013.tlg028.perseus-eng2"</span>)
-<span class='fu'>get_perseus_text</span>(<span class='st'>"urn:cts:greekLit:tlg0013.tlg028.perseus-grc2"</span>)
-<span class='fu'>get_perseus_text</span>(<span class='st'>"urn:cts:latinLit:stoa0215b.stoa003.opp-lat1"</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_perseus_text</span>(<span class='st'>"urn:cts:greekLit:tlg0013.tlg028.perseus-grc2"</span>)</div><div class='output co'>#&gt; # A tibble: 18 x 7
+#&gt;                                                text
+#&gt;                                               &lt;chr&gt;
+#&gt;  1    Παλλάδ᾽ Ἀθηναίην, κυδρὴν θεόν, ἄρχομ᾽ ἀείδειν
+#&gt;  2    γλαυκῶπιν, πολύμητιν, ἀμείλιχον ἦτορ ἔχουσαν,
+#&gt;  3        παρθένον αἰδοίην, ἐρυσίπτολιν, ἀλκήεσσαν,
+#&gt;  4       Τριτογενῆ, τὴν αὐτὸς ἐγείνατο μητίετα Ζεὺς
+#&gt;  5      σεμνῆς ἐκ κεφαλῆς, πολεμήια τεύχε᾽ ἔχουσαν,
+#&gt;  6 χρύσεα, παμφανόωντα: σέβας δ᾽ ἔχε πάντας ὁρῶντας
+#&gt;  7           ἀθανάτους: ἣ δὲ πρόσθεν Διὸς αἰγιόχοιο
+#&gt;  8         ἐσσυμένως ὤρουσεν ἀπ᾽ ἀθανάτοιο καρήνου,
+#&gt;  9  σείσασ᾽ ὀξὺν ἄκοντα: μέγας δ᾽ ἐλελίζετ᾽ Ὄλυμπος
+#&gt; 10      δεινὸν ὑπὸ βρίμης γλαυκώπιδος: ἀμφὶ δὲ γαῖα
+#&gt; 11       σμερδαλέον ἰάχησεν: ἐκινήθη δ᾽ ἄρα πόντος,
+#&gt; 12     κύμασι πορφυρέοισι κυκώμενος: ἔκχυτο δ᾽ ἅλμη
+#&gt; 13        ἐξαπίνης: στῆσεν δ᾽ Ὑπερίονος ἀγλαὸς υἱὸς
+#&gt; 14       ἵππους ὠκύποδας δηρὸν χρόνον, εἰσότε κούρη
+#&gt; 15         εἵλετ᾽ ἀπ᾽ ἀθανάτων ὤμων θεοείκελα τεύχη
+#&gt; 16          Παλλὰς Ἀθηναίη: γήθησε δὲ μητίετα Ζεύς.
+#&gt; 17     καὶ σὺ μὲν οὕτω χαῖρε, Διὸς τέκος αἰγιόχοιο:
+#&gt; 18     αὐτὰρ ἐγὼ καὶ σεῖο καὶ ἄλλης μνήσομ᾽ ἀοιδῆς.
+#&gt; # ... with 6 more variables: urn &lt;chr&gt;, group_name &lt;chr&gt;, label &lt;chr&gt;,
+#&gt; #   description &lt;chr&gt;, language &lt;chr&gt;, section &lt;int&gt;</div><div class='input'><span class='fu'>get_perseus_text</span>(<span class='st'>"urn:cts:latinLit:stoa0215b.stoa003.opp-lat1"</span>)</div><div class='output co'>#&gt; # A tibble: 69 x 7
+#&gt;                                               text
+#&gt;                                              &lt;chr&gt;
+#&gt;  1 f Tibique, Domine, celsum Cherubim dicatum est,
+#&gt;  2             et illa moles quadriformis machinae
+#&gt;  3              te sempiterno confitentur carmine.
+#&gt;  4                et nos imago consonantis cantici
+#&gt;  5                 amen sonamus, alleluia dicimus.
+#&gt;  6             Te septem primi deprecantur angeli,
+#&gt;  7            ceu ciuitatis septem principes uiri,
+#&gt;  8             solio propinqui, ianitores proximi.
+#&gt;  9                et nos imago consonantis cantici
+#&gt; 10                 amen sonamus, alleluia dicimus.
+#&gt; # ... with 59 more rows, and 6 more variables: urn &lt;chr&gt;, group_name &lt;chr&gt;,
+#&gt; #   label &lt;chr&gt;, description &lt;chr&gt;, language &lt;chr&gt;, section &lt;int&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

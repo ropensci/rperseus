@@ -5,7 +5,7 @@ rperseus
 
 ------------------------------------------------------------------------
 
-[![Build Status](https://travis-ci.org/daranzolin/rperseus.svg?branch=master)](https://travis-ci.org/daranzolin/rperseus) [![codecov](https://codecov.io/gh/daranzolin/rperseus/branch/master/graph/badge.svg)](https://codecov.io/gh/daranzolin/rperseus) [![](https://badges.ropensci.org/145_status.svg)](https://github.com/ropensci/onboarding/issues/145)
+[![Build Status](https://travis-ci.org/ropensci/rperseus.svg?branch=master)](https://travis-ci.org/ropensci/rperseus) [![codecov](https://codecov.io/gh/ropensci/rperseus/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/rperseus) [![](https://badges.ropensci.org/145_status.svg)](https://github.com/ropensci/onboarding/issues/145)
 
 ![](http://www.infobiblio.es/wp-content/uploads/2015/06/perseus-logo.png)
 

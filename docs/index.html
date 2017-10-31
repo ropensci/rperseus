@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get texts from the Perseus Digital Library • rperseus</title>
+<title>Get Texts from the Perseus Digital Library • rperseus</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="/index.html">
+  <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -87,10 +87,15 @@
 <p>Author: David Ranzolin</p>
 <p>License: MIT</p>
 </div>
+<div id="goal" class="section level2">
+<h2 class="hasAnchor">
+<a href="#goal" class="anchor"></a>Goal</h2>
+<p>The goal of <code>rperseus</code> is to furnish classicists, textual critics, and R enthusiasts with texts from the Classical World. While the English translations of most texts are available through <code>gutenbergr</code>, <code>rperseus</code>returns these works in their original language–Greek and Latin.</p>
+</div>
 <div id="description" class="section level2">
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
-<p><code>rperseus</code> taps into the API endpoints at the <a href="http://www.perseus.tufts.edu/hopper/">Perseus Digital Library’s</a> CapiTainS environment. A wealth of primary texts and translations are available, from Homer to Cicero to Boetheius.</p>
+<p><code>rperseus</code> provides access to classical texts within the <a href="http://www.perseus.tufts.edu/hopper/">Perseus Digital Library’s</a> CapiTainS environment. A wealth of Greek and Latin texts are available, from Homer to Cicero to Boetheius. The Perseus Digital Library includes English translations in some cases. The base API url is <code>http://cts.perseids.org/api/cts</code>.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -101,6 +106,7 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
+<p><a href="https://daranzolin.github.io/rperseus//articles/rperseus-vignette.html">See the vignette to get started.</a></p>
 <p>To obtain a particular text, you must first know its full Uniform Resource Name (URN). URNs can be perused in the <code>perseus_catalog</code>, a data frame lazily loaded into the package. For example, say I want a copy of Virgil’s <em>Aeneid</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(purrr)
@@ -125,7 +131,8 @@ aeneid_latin &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st
 <h2 class="hasAnchor">
 <a href="#tidyverse-and-tidytext" class="anchor"></a>tidyverse and tidytext</h2>
 <p><code>rperseus</code> plays well with the <code>tidyverse</code> and <code>tidytext</code>. Here I obtain all of Plato’s works that have English translations available:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plato &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(purrr)
+plato &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(group_name ==<span class="st"> "Plato"</span>,
          language ==<span class="st"> "eng"</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(urn) %&gt;%<span class="st"> </span>
@@ -159,6 +166,16 @@ philoctetes %&gt;%<span class="st"> </span>
 <span class="co">#&gt; # ... with 3,657 more rows</span></code></pre></div>
 <p>While there’s no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!</p>
 </div>
+<div id="meta" class="section level2">
+<h2 class="hasAnchor">
+<a href="#meta" class="anchor"></a>Meta</h2>
+<ul>
+<li><a href="https://github.com/daranzolin/rperseus/issues">Report bugs or issues here.</a></li>
+<li>If you’d like to contribute to the development of <code>rperseus</code>, first get acquainted with the Perseus Digital Library, fork the repo, and send a pull request.</li>
+<li>This project is released with a <a href="https://github.com/daranzolin/rperseus/blob/master/CONDUCT.md">Contributor Code of Conduct.</a> By participating in this project, you agree to abide by its terms.</li>
+</ul>
+<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/ropensci_footer.png" alt="ropensci_footer"></a></p>
+</div>
 </div>
   </div>
 
@@ -179,8 +196,9 @@ philoctetes %&gt;%<span class="st"> </span>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/daranzolin/rperseus"><img src="https://travis-ci.org/daranzolin/rperseus.svg?branch=master" alt="Build Status"></a></li>
-<li><a href="https://codecov.io/gh/daranzolin/rperseus"><img src="https://codecov.io/gh/daranzolin/rperseus/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://travis-ci.org/ropensci/rperseus"><img src="https://travis-ci.org/ropensci/rperseus.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://codecov.io/gh/ropensci/rperseus"><img src="https://codecov.io/gh/ropensci/rperseus/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/ropensci/onboarding/issues/145"><img src="https://badges.ropensci.org/145_status.svg"></a></li>
 </ul>
 </div>
 
