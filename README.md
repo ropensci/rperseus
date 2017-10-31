@@ -5,7 +5,7 @@ rperseus
 
 ------------------------------------------------------------------------
 
-[![Build Status](https://travis-ci.org/daranzolin/rperseus.svg?branch=master)](https://travis-ci.org/daranzolin/rperseus) [![codecov](https://codecov.io/gh/daranzolin/rperseus/branch/master/graph/badge.svg)](https://codecov.io/gh/daranzolin/rperseus)
+[![Build Status](https://travis-ci.org/daranzolin/rperseus.svg?branch=master)](https://travis-ci.org/daranzolin/rperseus) [![codecov](https://codecov.io/gh/daranzolin/rperseus/branch/master/graph/badge.svg)](https://codecov.io/gh/daranzolin/rperseus) [![](https://badges.ropensci.org/145_status.svg)](https://github.com/ropensci/onboarding/issues/145)
 
 ![](http://www.infobiblio.es/wp-content/uploads/2015/06/perseus-logo.png)
 
@@ -83,7 +83,6 @@ And here's how to retrieve the Greek text from Sophocles' underrated *Philoctete
 
 ``` r
 library(tidytext)
-#> Warning: package 'tidytext' was built under R version 3.4.2
 
 philoctetes <- perseus_catalog %>% 
   filter(group_name == "Sophocles",
@@ -119,3 +118,5 @@ Meta
 -   [Report bugs or issues here.](https://github.com/daranzolin/rperseus/issues)
 -   If you'd like to contribute to the development of `rperseus`, first get acquainted with the Perseus Digital Library, fork the repo, and send a pull request.
 -   This project is released with a [Contributor Code of Conduct.](https://github.com/daranzolin/rperseus/blob/master/CONDUCT.md) By participating in this project, you agree to abide by its terms.
+
+[![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
