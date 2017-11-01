@@ -25,5 +25,5 @@ Suggests: knitr,
     roxygen2,
     tidytext
 VignetteBuilder: knitr
-URL: https://github.com/ropesci/rperseus
+URL: https://github.com/ropensci/rperseus
 BugReports: https://github.com/ropensci/rperseus/issues
