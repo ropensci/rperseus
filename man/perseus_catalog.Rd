@@ -10,7 +10,7 @@
   \item{group_name}{Could refer to author (e.g. "Aristotle") or corpus (e.g. "New Testament")}
   \item{label}{Text label, e.g. "Phaedrus"}
   \item{description}{Text description}
-  \item{language}{Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English}
+  \item{language}{Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English, "hpt" = Hebrew pointed text, "hct" = Hebrew consonantal text, "ger" = German, "oth" = other}
 }}
 \source{
 \url{http://cts.perseids.org/api/cts/?request=GetCapabilities}
