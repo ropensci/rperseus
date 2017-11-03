@@ -65,6 +65,17 @@ aeneid_english <- perseus_catalog %>%
 
 Refer to the language variable in `perseus_catalog` for translation availability.
 
+Excerpts
+--------
+
+You can also specify excerpts:
+
+``` r
+qoheleth <- get_perseus_text(text_urn = "urn:cts:ancJewLit:hebBible.ecclesiastes.leningrad-pntd", excerpt = "1.1-1.3")
+qoheleth$text
+#> [1] "דִּבְרֵי֙ קֹהֶ֣לֶת בֶּן־ דָּוִ֔ד מֶ֖לֶךְ בִּירוּשָׁלִָֽם : הֲבֵ֤ל הֲבָלִים֙ אָמַ֣ר קֹהֶ֔לֶת הֲבֵ֥ל הֲבָלִ֖ים הַכֹּ֥ל הָֽבֶל : מַה־ יִּתְר֖וֹן לָֽאָדָ֑ם בְּכָל־ עֲמָל֔וֹ שֶֽׁיַּעֲמֹ֖ל תַּ֥חַת הַשָּֽׁמֶשׁ :"
+```
+
 tidyverse and tidytext
 ----------------------
 

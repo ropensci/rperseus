@@ -75,6 +75,15 @@ aeneid_english <- perseus_catalog %>%
 
 Refer to the language variable in `perseus_catalog` for translation availability.
 
+## Excerpts
+
+You can also specify excerpts:
+
+```{r}
+qoheleth <- get_perseus_text(text_urn = "urn:cts:ancJewLit:hebBible.ecclesiastes.leningrad-pntd", excerpt = "1.1-1.3")
+qoheleth$text
+```
+
 ## tidyverse and tidytext 
 
 `rperseus` plays well with the `tidyverse` and `tidytext`. Here I obtain all of Plato's works that have English translations available:
