@@ -4,10 +4,12 @@
 \alias{get_perseus_text}
 \title{Get a primary text by URN.}
 \usage{
-get_perseus_text(text_urn)
+get_perseus_text(text_urn, excerpt = NULL)
 }
 \arguments{
 \item{text_urn}{Valid uniform resource number (URN) obtained from \code{\link{perseus_catalog}}.}
+
+\item{excerpt}{An index to excerpt the text. For example, the first four "verses" of a text might be 1.1-1.4. If NULL, the entire work is returned.}
 }
 \value{
 A seven column \code{tbl_df} with one row for each "section" (splits vary from text--could be line, chapter, etc.).
@@ -19,6 +21,7 @@ Columns:
   \item{label}{Text label, e.g. "Phaedrus"}
   \item{description}{Text description}
   \item{language}{Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English}
+  \item{section}{Text section or excerpt if specified}
 }
 }
 \description{
@@ -27,4 +30,5 @@ Get a primary text by URN.
 \examples{
 get_perseus_text("urn:cts:greekLit:tlg0013.tlg028.perseus-grc2")
 get_perseus_text("urn:cts:latinLit:stoa0215b.stoa003.opp-lat1")
+get_perseus_text(text_urn = "urn:cts:greekLit:tlg0031.tlg009.perseus-grc2", excerpt = "5.1-5.5")
 }

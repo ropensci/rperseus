@@ -5,13 +5,10 @@ reformat_urn <- function(urn) {
 
 get_text_url <- function(text_urn, text_index) {
   BASE_URL <- "http://cts.perseids.org/api/cts"
-  text_url <- httr::modify_url(BASE_URL,
+  httr::modify_url(BASE_URL,
                    query = list(
                      request = "GetPassage",
-                     urn = paste(text_urn, text_index, sep = ":")
-                     )
-                   )
-  text_url
+                     urn = paste(text_urn, text_index, sep = ":")))
 }
 
 # This function returns the full index of a text.
@@ -38,8 +35,7 @@ get_full_text_index <- function(new_urn) {
   if (is.na(final_text)) {
     final_text <- texts[[length(texts)]]
   }
-  index <- paste(initial_text, final_text, sep = "-")
-  index
+  paste(initial_text, final_text, sep = "-")
 }
 
 extract_text <- function(text_url) {
@@ -48,7 +44,8 @@ extract_text <- function(text_url) {
                  httr::user_agent(
                    "rperseus - https://github.com/daranzolin/rperseus")
                  )
-  if (res$status_code == 500) stop("Nothing available for that URN.")
+  if (res$status_code == 500) stop("Nothing available for that URN or excerpt.",
+                                   call. = FALSE)
   httr::stop_for_status(res)
   r_list <- res %>%
     httr::content("raw") %>%
@@ -59,7 +56,8 @@ extract_text <- function(text_url) {
                      ~ paste(unlist(.), collapse = " ")) %>%
     stringr::str_replace_all("\\s+", " ") %>%
     stringr::str_replace_all("\\*", "") %>%
-    stringr::str_trim()
-  text_df <- dplyr::data_frame(text = text) %>% dplyr::filter(text != "")
-  text_df
+    stringr::str_replace_all("/", "") %>%
+    stringr::str_trim() %>%
+    purrr::discard(~.=="")
+  dplyr::data_frame(text = text)
 }

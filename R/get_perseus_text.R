@@ -1,6 +1,7 @@
 #' Get a primary text by URN.
 #'
 #' @param text_urn Valid uniform resource number (URN) obtained from \code{\link{perseus_catalog}}.
+#' @param excerpt An index to excerpt the text. For example, the first four "verses" of a text might be 1.1-1.4. If NULL, the entire work is returned.
 #'
 #' @return A seven column \code{tbl_df} with one row for each "section" (splits vary from text--could be line, chapter, etc.).
 #' Columns:
@@ -11,6 +12,7 @@
 #'   \item{label}{Text label, e.g. "Phaedrus"}
 #'   \item{description}{Text description}
 #'   \item{language}{Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English}
+#'   \item{section}{Text section or excerpt if specified}
 #' }
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
@@ -19,11 +21,12 @@
 #' @examples
 #' get_perseus_text("urn:cts:greekLit:tlg0013.tlg028.perseus-grc2")
 #' get_perseus_text("urn:cts:latinLit:stoa0215b.stoa003.opp-lat1")
+#' get_perseus_text(text_urn = "urn:cts:greekLit:tlg0031.tlg009.perseus-grc2", excerpt = "5.1-5.5")
 
-get_perseus_text <- function(text_urn) {
+get_perseus_text <- function(text_urn, excerpt = NULL) {
 
   if (length(text_urn) > 1) {
-    stop("Please supply one valid urn.",
+    stop("Please supply one valid URN.",
          call. = FALSE)
   }
 
@@ -33,12 +36,24 @@ get_perseus_text <- function(text_urn) {
   }
 
   new_urn <- reformat_urn(text_urn)
-  text_index <- get_full_text_index(new_urn)
-  if (grepl("NA", text_index)) stop("No text available.")
-  text_url <- get_text_url(text_urn, text_index)
-  df <- extract_text(text_url) %>%
-    dplyr::mutate(urn = text_urn) %>%
-    dplyr::left_join(internal_perseus_catalog, by = "urn") %>%
-    dplyr::mutate(section = dplyr::row_number(.data$urn))
-  df
+
+  if (is.null(excerpt)) {
+    text_index <- get_full_text_index(new_urn)
+    if (grepl("NA", text_index)) stop("No text available.")
+  } else {
+    text_index <- excerpt
+  }
+    text_url <- get_text_url(text_urn, text_index)
+    text_df <- extract_text(text_url) %>%
+      dplyr::mutate(urn = text_urn) %>%
+      dplyr::left_join(internal_perseus_catalog, by = "urn")
+    if (is.null(excerpt)) {
+      text_df <- text_df %>%
+        dplyr::mutate(section = dplyr::row_number(.data$urn))
+    } else {
+      text_df <- text_df %>%
+        dplyr::mutate(section = excerpt)
+    }
+    text_df
 }
+
