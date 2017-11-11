@@ -11,7 +11,7 @@ vignette: >
 
 ### Introduction
 
-The workhorse of `rperseus` is `get_perseus_text`. You pass one argument to this function: `text_urn`. URNs (Uniform Resource Number) can be located within the `perseus_catalog` object, which is lazily loaded on `library(rperseus)`. I recommend scanning the catalog before selecting a text.
+The workhorse of `rperseus` is `get_perseus_text`. You pass one argument to this function: `urn`. URNs (Uniform Resource Number) can be located within the `perseus_catalog` object, which is lazily loaded on `library(rperseus)`. I recommend scanning the catalog before selecting a text.
 
 ```{r}
 library(rperseus)
@@ -30,7 +30,7 @@ count(perseus_catalog, group_name, sort = TRUE)
 Once you've identified the relevant URN, paste it into a call to `get_perseus_text`. Here I've called for the Greek text of Plato's *Crito*:
 
 ```{r}
-crito <- get_perseus_text(text_urn = "urn:cts:greekLit:tlg0059.tlg003.perseus-grc2")
+crito <- get_perseus_text(urn = "urn:cts:greekLit:tlg0059.tlg003.perseus-grc2")
 crito$text[1]
 ```
 
@@ -44,6 +44,21 @@ plato <- perseus_catalog %>%
          language == "eng") %>% 
   pull(urn) %>% 
   map_df(get_perseus_text)
+```
+
+### Rendering Parallels
+
+You can render small parallels with `perseus_parallel`:
+
+```{r,fig.width=8, fig.height=6}
+tibble::tibble(label = c("Colossians", "1 Thessalonians", "Romans"),
+              excerpt = c("1.4", "1.3", "8.35-8.39")) %>%
+    dplyr::left_join(perseus_catalog) %>%
+    dplyr::filter(language == "grc") %>%
+    dplyr::select(urn, excerpt) %>%
+    as.list() %>%
+    purrr::pmap_df(get_perseus_text) %>%
+    perseus_parallel(words_per_row = 4)
 ```
 
 
