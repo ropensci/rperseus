@@ -79,7 +79,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/daranzolin/rperseus">
+  <a href="https://github.com/ropensci/rperseus">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -102,14 +102,18 @@
     <p>Get a primary text by URN.</p>
     
 
-    <pre class="usage"><span class='fu'>get_perseus_text</span>(<span class='no'>text_urn</span>)</pre>
+    <pre class="usage"><span class='fu'>get_perseus_text</span>(<span class='no'>urn</span>, <span class='kw'>excerpt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>text_urn</th>
+      <th>urn</th>
       <td><p>Valid uniform resource number (URN) obtained from <code><a href='perseus_catalog.html'>perseus_catalog</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>excerpt</th>
+      <td><p>An index to excerpt the text. For example, the first four "verses" of a text might be 1.1-1.4. If NULL, the entire work is returned.</p></td>
     </tr>
     </table>
     
@@ -123,6 +127,7 @@ Columns:</p><dl class='dl-horizontal'>
   <dt>label</dt><dd><p>Text label, e.g. "Phaedrus"</p></dd>
   <dt>description</dt><dd><p>Text description</p></dd>
   <dt>language</dt><dd><p>Text language, e.g. "grc" = Greek, "lat" = Latin, "eng" = English</p></dd>
+  <dt>section</dt><dd><p>Text section or excerpt if specified</p></dd>
 </dl>
 
     
@@ -164,7 +169,12 @@ Columns:</p><dl class='dl-horizontal'>
 #&gt;  9                et nos imago consonantis cantici
 #&gt; 10                 amen sonamus, alleluia dicimus.
 #&gt; # ... with 59 more rows, and 6 more variables: urn &lt;chr&gt;, group_name &lt;chr&gt;,
-#&gt; #   label &lt;chr&gt;, description &lt;chr&gt;, language &lt;chr&gt;, section &lt;int&gt;</div></pre>
+#&gt; #   label &lt;chr&gt;, description &lt;chr&gt;, language &lt;chr&gt;, section &lt;int&gt;</div><div class='input'><span class='fu'>get_perseus_text</span>(<span class='kw'>urn</span> <span class='kw'>=</span> <span class='st'>"urn:cts:greekLit:tlg0031.tlg009.perseus-grc2"</span>, <span class='kw'>excerpt</span> <span class='kw'>=</span> <span class='st'>"5.1-5.5"</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 7
+#&gt;                                                                               text
+#&gt;                                                                              &lt;chr&gt;
+#&gt; 1 Τῇ ἐλευθερίᾳ ἡμᾶς Χριστὸς ἠλευθέρωσεν· στήκετε οὖν καὶ μὴ πάλιν ζυγῷ δουλείας ἐν
+#&gt; # ... with 6 more variables: urn &lt;chr&gt;, group_name &lt;chr&gt;, label &lt;chr&gt;,
+#&gt; #   description &lt;chr&gt;, language &lt;chr&gt;, section &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

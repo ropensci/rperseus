@@ -90,12 +90,12 @@
 <div id="goal" class="section level2">
 <h2 class="hasAnchor">
 <a href="#goal" class="anchor"></a>Goal</h2>
-<p>The goal of <code>rperseus</code> is to furnish classicists, textual critics, and R enthusiasts with texts from the Classical World. While the English translations of most texts are available through <code>gutenbergr</code>, <code>rperseus</code>returns these works in their original language–Greek and Latin.</p>
+<p>The goal of <code>rperseus</code> is to furnish classicists, textual critics, and R enthusiasts with texts from the Classical World. While the English translations of most texts are available through <code>gutenbergr</code>, <code>rperseus</code>returns these works in their original language–Greek, Latin, and Hebrew.</p>
 </div>
 <div id="description" class="section level2">
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
-<p><code>rperseus</code> provides access to classical texts within the <a href="http://www.perseus.tufts.edu/hopper/">Perseus Digital Library’s</a> CapiTainS environment. A wealth of Greek and Latin texts are available, from Homer to Cicero to Boetheius. The Perseus Digital Library includes English translations in some cases. The base API url is <code>http://cts.perseids.org/api/cts</code>.</p>
+<p><code>rperseus</code> provides access to classical texts within the <a href="http://www.perseus.tufts.edu/hopper/">Perseus Digital Library’s</a> CapiTainS environment. A wealth of Greek, Latin, and Hebrew texts are available, from Homer to Cicero to Boetheius. The Perseus Digital Library includes English translations in some cases. The base API url is <code>http://cts.perseids.org/api/cts</code>.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -126,6 +126,14 @@ aeneid_latin &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(urn) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="reference/get_perseus_text.html">get_perseus_text</a></span>()</code></pre></div>
 <p>Refer to the language variable in <code>perseus_catalog</code> for translation availability.</p>
+</div>
+<div id="excerpts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#excerpts" class="anchor"></a>Excerpts</h2>
+<p>You can also specify excerpts:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qoheleth &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_perseus_text.html">get_perseus_text</a></span>(<span class="dt">urn =</span> <span class="st">"urn:cts:ancJewLit:hebBible.ecclesiastes.leningrad-pntd"</span>, <span class="dt">excerpt =</span> <span class="st">"1.1-1.3"</span>)
+qoheleth$text
+<span class="co">#&gt; [1] "דִּבְרֵי֙ קֹהֶ֣לֶת בֶּן־ דָּוִ֔ד מֶ֖לֶךְ בִּירוּשָׁלִָֽם : הֲבֵ֤ל הֲבָלִים֙ אָמַ֣ר קֹהֶ֔לֶת הֲבֵ֥ל הֲבָלִ֖ים הַכֹּ֥ל הָֽבֶל : מַה־ יִּתְר֖וֹן לָֽאָדָ֑ם בְּכָל־ עֲמָל֔וֹ שֶֽׁיַּעֲמֹ֖ל תַּ֥חַת הַשָּֽׁמֶשׁ :"</span></code></pre></div>
 </div>
 <div id="tidyverse-and-tidytext" class="section level2">
 <h2 class="hasAnchor">
@@ -165,6 +173,21 @@ philoctetes %&gt;%<span class="st"> </span>
 <span class="co">#&gt; 10        πρὸς    70</span>
 <span class="co">#&gt; # ... with 3,657 more rows</span></code></pre></div>
 <p>While there’s no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!</p>
+</div>
+<div id="rendering-parallels" class="section level2">
+<h2 class="hasAnchor">
+<a href="#rendering-parallels" class="anchor"></a>Rendering Parallels</h2>
+<p>You can render small parallels with <code>perseus_parallel</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">label =</span> <span class="kw">c</span>(<span class="st">"Colossians"</span>, <span class="st">"1 Thessalonians"</span>, <span class="st">"Romans"</span>),
+              <span class="dt">excerpt =</span> <span class="kw">c</span>(<span class="st">"1.4"</span>, <span class="st">"1.3"</span>, <span class="st">"8.35-8.39"</span>)) %&gt;%
+<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(perseus_catalog) %&gt;%
+<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(language ==<span class="st"> "grc"</span>) %&gt;%
+<span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(urn, excerpt) %&gt;%
+<span class="st">    </span><span class="kw">as.list</span>() %&gt;%
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap_df</a></span>(get_perseus_text) %&gt;%
+<span class="st">    </span><span class="kw"><a href="reference/perseus_parallel.html">perseus_parallel</a></span>(<span class="dt">words_per_row =</span> <span class="dv">4</span>)
+<span class="co">#&gt; Joining, by = "label"</span></code></pre></div>
+<p><img src="README-unnamed-chunk-8-1.png" width="768"></p>
 </div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">

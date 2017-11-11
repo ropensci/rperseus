@@ -55,7 +55,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/daranzolin/rperseus">
+  <a href="https://github.com/ropensci/rperseus">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -75,7 +75,7 @@
       <h1>rperseus Vignette</h1>
                         <h4 class="author">David Ranzolin</h4>
             
-            <h4 class="date">2017-10-30</h4>
+            <h4 class="date">2017-11-11</h4>
           </div>
 
     
@@ -84,7 +84,7 @@
 <div id="introduction" class="section level3">
 <h3 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h3>
-<p>The workhorse of <code>rperseus</code> is <code>get_perseus_text</code>. You pass one argument to this function: <code>text_urn</code>. URNs (Uniform Resource Number) can be located within the <code>perseus_catalog</code> object, which is lazily loaded on <code>library(rperseus)</code>. I recommend scanning the catalog before selecting a text.</p>
+<p>The workhorse of <code>rperseus</code> is <code>get_perseus_text</code>. You pass one argument to this function: <code>urn</code>. URNs (Uniform Resource Number) can be located within the <code>perseus_catalog</code> object, which is lazily loaded on <code>library(rperseus)</code>. I recommend scanning the catalog before selecting a text.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rperseus)
 <span class="kw">head</span>(perseus_catalog)</code></pre></div>
 <pre><code>## # A tibble: 6 x 5
@@ -120,7 +120,7 @@
 <h3 class="hasAnchor">
 <a href="#getting-a-text" class="anchor"></a>Getting a Text</h3>
 <p>Once you’ve identified the relevant URN, paste it into a call to <code>get_perseus_text</code>. Here I’ve called for the Greek text of Plato’s <em>Crito</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crito &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_perseus_text.html">get_perseus_text</a></span>(<span class="dt">text_urn =</span> <span class="st">"urn:cts:greekLit:tlg0059.tlg003.perseus-grc2"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crito &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_perseus_text.html">get_perseus_text</a></span>(<span class="dt">urn =</span> <span class="st">"urn:cts:greekLit:tlg0059.tlg003.perseus-grc2"</span>)
 crito$text[<span class="dv">1</span>]</code></pre></div>
 <pre><code>## [1] "ΣΩ. τί τηνικάδε ἀφῖξαι, ὦ Κρίτων; ἢ οὐ πρῲ ἔτι ἐστίν; ΚΡ. πάνυ μὲν οὖν. ΣΩ. πηνίκα μάλιστα; ΚΡ. ὄρθρος βαθύς. ΣΩ. θαυμάζω ὅπως ἠθέλησέ σοι ὁ τοῦ δεσμωτηρίου φύλαξ ὑπακοῦσαι. ΚΡ. συνήθης ἤδη μοί ἐστιν, ὦ Σώκρατες, διὰ τὸ πολλάκις δεῦρο φοιτᾶν, καί τι καὶ εὐεργέτηται ὑπʼ ἐμοῦ. ΣΩ. ἄρτι δὲ ἥκεις ἢ πάλαι; ΚΡ. ἐπιεικῶς πάλαι. ΣΩ. εἶτα πῶς οὐκ εὐθὺς ἐπήγειράς με, ἀλλὰ σιγῇ παρακάθησαι; ΚΡ. οὐ μὰ τὸν Δία, ὦ Σώκρατες, οὐδʼ ἂν αὐτὸς ἤθελον ἐν τοσαύτῃ τε ἀγρυπνίᾳ καὶ λύπῃ εἶναι, ἀλλὰ καὶ σοῦ πάλαι θαυμάζω αἰσθανόμενος ὡς ἡδέως καθεύδεις· καὶ ἐπίτηδές σε οὐκ ἤγειρον ἵνα ὡς ἥδιστα διάγῃς. καὶ πολλάκις μὲν δή σε καὶ πρότερον ἐν παντὶ τῷ βίῳ ηὐδαιμόνισα τοῦ τρόπου, πολὺ δὲ μάλιστα ἐν τῇ νῦν παρεστώσῃ συμφορᾷ, ὡς ῥᾳδίως αὐτὴν καὶ πρᾴως φέρεις. ΣΩ. καὶ γὰρ ἄν, ὦ Κρίτων, πλημμελὲς εἴη ἀγανακτεῖν τηλικοῦτον ὄντα εἰ δεῖ ἤδη τελευτᾶν. ΚΡ. καὶ ἄλλοι, ὦ Σώκρατες, τηλικοῦτοι ἐν τοιαύταις συμφοραῖς ἁλίσκονται, ἀλλʼ οὐδὲν αὐτοὺς ἐπιλύεται ἡ ἡλικία τὸ μὴ οὐχὶ ἀγανακτεῖν τῇ παρούσῃ τύχῃ. ΣΩ. ἔστι ταῦτα. ἀλλὰ τί δὴ οὕτω πρῲ ἀφῖξαι; ΚΡ. ἀγγελίαν, ὦ Σώκρατες, φέρων χαλεπήν, οὐ σοί, ὡς ἐμοὶ φαίνεται, ἀλλʼ ἐμοὶ καὶ τοῖς σοῖς ἐπιτηδείοις πᾶσιν καὶ χαλεπὴν καὶ βαρεῖαν, ἣν ἐγώ, ὡς ἐμοὶ δοκῶ, ἐν τοῖς βαρύτατʼ ἂν ἐνέγκαιμι. ΣΩ. τίνα ταύτην; ἢ τὸ πλοῖον ἀφῖκται ἐκ Δήλου, οὗ δεῖ ἀφικομένου τεθνάναι με; ΚΡ. οὔτοι δὴ ἀφῖκται, ἀλλὰ δοκεῖν μέν μοι ἥξει τήμερον ἐξ ὧν ἀπαγγέλλουσιν ἥκοντές τινες ἀπὸ Σουνίου καὶ καταλιπόντες ἐκεῖ αὐτό. δῆλον οὖν ἐκ τούτων τῶν ἀγγέλων ὅτι ἥξει τήμερον, καὶ ἀνάγκη δὴ εἰς αὔριον ἔσται, ὦ Σώκρατες, τὸν βίον σε τελευτᾶν. ΣΩ. ἀλλʼ, ὦ Κρίτων, τύχῃ ἀγαθῇ, εἰ ταύτῃ τοῖς θεοῖς φίλον, ταύτῃ ἔστω· οὐ μέντοι οἶμαι ἥξειν αὐτὸ τήμερον."</code></pre>
 </div>
@@ -133,6 +133,21 @@ crito$text[<span class="dv">1</span>]</code></pre></div>
          language ==<span class="st"> "eng"</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(urn) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">map_df</span>(get_perseus_text)</code></pre></div>
+</div>
+<div id="rendering-parallels" class="section level3">
+<h3 class="hasAnchor">
+<a href="#rendering-parallels" class="anchor"></a>Rendering Parallels</h3>
+<p>You can render small parallels with <code>perseus_parallel</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tibble::<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">label =</span> <span class="kw">c</span>(<span class="st">"Colossians"</span>, <span class="st">"1 Thessalonians"</span>, <span class="st">"Romans"</span>),
+              <span class="dt">excerpt =</span> <span class="kw">c</span>(<span class="st">"1.4"</span>, <span class="st">"1.3"</span>, <span class="st">"8.35-8.39"</span>)) %&gt;%
+<span class="st">    </span>dplyr::<span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(perseus_catalog) %&gt;%
+<span class="st">    </span>dplyr::<span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(language ==<span class="st"> "grc"</span>) %&gt;%
+<span class="st">    </span>dplyr::<span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(urn, excerpt) %&gt;%
+<span class="st">    </span><span class="kw">as.list</span>() %&gt;%
+<span class="st">    </span>purrr::<span class="kw">pmap_df</span>(get_perseus_text) %&gt;%
+<span class="st">    </span><span class="kw"><a href="../reference/perseus_parallel.html">perseus_parallel</a></span>(<span class="dt">words_per_row =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>## Joining, by = "label"</code></pre>
+<p><img src="rperseus-vignette_files/figure-html/unnamed-chunk-5-1.png" width="768"></p>
 </div>
 </div>
   </div>
