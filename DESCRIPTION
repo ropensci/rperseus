@@ -16,7 +16,10 @@ Imports:
     dplyr,
     purrr,
     rlang,
-    rvest
+    rvest,
+    ggplot2,
+    stringi,
+    tibble
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
