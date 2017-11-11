@@ -71,7 +71,7 @@ Excerpts
 You can also specify excerpts:
 
 ``` r
-qoheleth <- get_perseus_text(text_urn = "urn:cts:ancJewLit:hebBible.ecclesiastes.leningrad-pntd", excerpt = "1.1-1.3")
+qoheleth <- get_perseus_text(urn = "urn:cts:ancJewLit:hebBible.ecclesiastes.leningrad-pntd", excerpt = "1.1-1.3")
 qoheleth$text
 #> [1] "דִּבְרֵי֙ קֹהֶ֣לֶת בֶּן־ דָּוִ֔ד מֶ֖לֶךְ בִּירוּשָׁלִָֽם : הֲבֵ֤ל הֲבָלִים֙ אָמַ֣ר קֹהֶ֔לֶת הֲבֵ֥ל הֲבָלִ֖ים הַכֹּ֥ל הָֽבֶל : מַה־ יִּתְר֖וֹן לָֽאָדָ֑ם בְּכָל־ עֲמָל֔וֹ שֶֽׁיַּעֲמֹ֖ל תַּ֥חַת הַשָּֽׁמֶשׁ :"
 ```
@@ -122,6 +122,25 @@ philoctetes %>%
 ```
 
 While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!
+
+Rendering Parallels
+-------------------
+
+You can render small parallels with `perseus_parallel`:
+
+``` r
+tibble(label = c("Colossians", "1 Thessalonians", "Romans"),
+              excerpt = c("1.4", "1.3", "8.35-8.39")) %>%
+    left_join(perseus_catalog) %>%
+    filter(language == "grc") %>%
+    select(urn, excerpt) %>%
+    as.list() %>%
+    pmap_df(get_perseus_text) %>%
+    perseus_parallel(words_per_row = 4)
+#> Joining, by = "label"
+```
+
+![](README-unnamed-chunk-8-1.png)
 
 Meta
 ----

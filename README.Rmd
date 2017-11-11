@@ -80,7 +80,7 @@ Refer to the language variable in `perseus_catalog` for translation availability
 You can also specify excerpts:
 
 ```{r}
-qoheleth <- get_perseus_text(text_urn = "urn:cts:ancJewLit:hebBible.ecclesiastes.leningrad-pntd", excerpt = "1.1-1.3")
+qoheleth <- get_perseus_text(urn = "urn:cts:ancJewLit:hebBible.ecclesiastes.leningrad-pntd", excerpt = "1.1-1.3")
 qoheleth$text
 ```
 
@@ -115,6 +115,23 @@ philoctetes %>%
 ```
 
 While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!
+
+## Rendering Parallels
+
+You can render small parallels with `perseus_parallel`:
+
+```{r,fig.width=8, fig.height=6}
+tibble(label = c("Colossians", "1 Thessalonians", "Romans"),
+              excerpt = c("1.4", "1.3", "8.35-8.39")) %>%
+    left_join(perseus_catalog) %>%
+    filter(language == "grc") %>%
+    select(urn, excerpt) %>%
+    as.list() %>%
+    pmap_df(get_perseus_text) %>%
+    perseus_parallel(words_per_row = 4)
+```
+
+
 
 ## Meta
 
