@@ -1,6 +1,6 @@
 #' Get a primary text by URN.
 #'
-#' @param text_urn Valid uniform resource number (URN) obtained from \code{\link{perseus_catalog}}.
+#' @param urn Valid uniform resource number (URN) obtained from \code{\link{perseus_catalog}}.
 #' @param excerpt An index to excerpt the text. For example, the first four "verses" of a text might be 1.1-1.4. If NULL, the entire work is returned.
 #'
 #' @return A seven column \code{tbl_df} with one row for each "section" (splits vary from text--could be line, chapter, etc.).
@@ -21,21 +21,21 @@
 #' @examples
 #' get_perseus_text("urn:cts:greekLit:tlg0013.tlg028.perseus-grc2")
 #' get_perseus_text("urn:cts:latinLit:stoa0215b.stoa003.opp-lat1")
-#' get_perseus_text(text_urn = "urn:cts:greekLit:tlg0031.tlg009.perseus-grc2", excerpt = "5.1-5.5")
+#' get_perseus_text(urn = "urn:cts:greekLit:tlg0031.tlg009.perseus-grc2", excerpt = "5.1-5.5")
 
-get_perseus_text <- function(text_urn, excerpt = NULL) {
+get_perseus_text <- function(urn, excerpt = NULL) {
 
-  if (length(text_urn) > 1) {
+  if (length(urn) > 1) {
     stop("Please supply one valid URN.",
          call. = FALSE)
   }
 
-  if (!text_urn %in% internal_perseus_catalog$urn) {
+  if (!urn %in% internal_perseus_catalog$urn) {
     stop("invalid text_urn argument: check perseus_catalog for valid URNs",
          call. = FALSE)
   }
 
-  new_urn <- reformat_urn(text_urn)
+  new_urn <- reformat_urn(urn)
 
   if (is.null(excerpt)) {
     text_index <- get_full_text_index(new_urn)
@@ -43,9 +43,9 @@ get_perseus_text <- function(text_urn, excerpt = NULL) {
   } else {
     text_index <- excerpt
   }
-    text_url <- get_text_url(text_urn, text_index)
+    text_url <- get_text_url(urn, text_index)
     text_df <- extract_text(text_url) %>%
-      dplyr::mutate(urn = text_urn) %>%
+      dplyr::mutate(urn = urn) %>%
       dplyr::left_join(internal_perseus_catalog, by = "urn")
     if (is.null(excerpt)) {
       text_df <- text_df %>%

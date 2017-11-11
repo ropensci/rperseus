@@ -61,3 +61,13 @@ extract_text <- function(text_url) {
     purrr::discard(~.=="")
   dplyr::data_frame(text = text)
 }
+
+split_every <- function(x, n, pattern, collapse = pattern, ...) {
+  x_split <- strsplit(x, pattern, perl = TRUE, ...)[[1]]
+  out <- character(ceiling(length(x_split) / n))
+  for (i in seq_along(out)) {
+    entry <- x_split[seq((i - 1) * n + 1, i * n, by = 1)]
+    out[i] <- paste0(entry[!is.na(entry)], collapse = collapse)
+  }
+  out
+}
