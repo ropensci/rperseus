@@ -131,8 +131,6 @@ tibble(label = c("Colossians", "1 Thessalonians", "Romans"),
     perseus_parallel(words_per_row = 4)
 ```
 
-
-
 ## Meta
 
 * [Report bugs or issues here.](https://github.com/daranzolin/rperseus/issues)

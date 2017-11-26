@@ -71,3 +71,108 @@ split_every <- function(x, n, pattern, collapse = pattern, ...) {
   }
   out
 }
+
+parse_form <- function(x) {
+  form <- x$f[[1]]
+  word <- ifelse(!is.null(x$l$l1[[1]]), x$l$l1[[1]],
+                 ifelse(!is.null(x$l$l2[[1]]), x$l$l2[[1]], NA))
+  verse <- attr(x, "p")
+  parts <- strsplit(attr(x, "o"), "")[[1]]
+  tibble::tibble(
+    word = word,
+    form = form,
+    verse = verse,
+    part_of_speech = parts[1],
+    person = parts[2],
+    number = parts[3],
+    tense = parts[4],
+    mood = parts[5],
+    voice = parts[6],
+    gender = parts[7],
+    case = parts[8],
+    degree = parts[9]
+  ) %>%
+    dplyr::mutate(
+      part_of_speech = dplyr::case_when(
+        part_of_speech == "n" ~ "noun",
+        part_of_speech == "v" ~ "verb",
+        part_of_speech == "a" ~ "adjective",
+        part_of_speech == "d" ~ "adverb",
+        part_of_speech == "l" ~ "article",
+        part_of_speech == "g" ~ "particle",
+        part_of_speech == "c" ~ "conjunction",
+        part_of_speech == "r" ~ "preposition",
+        part_of_speech == "p" ~ "pronoun",
+        part_of_speech == "m" ~ "numeral",
+        part_of_speech == "i" ~ "interjection",
+        part_of_speech == "u" ~ "punctuation"
+      ),
+      person = dplyr::case_when(
+        person == "1" ~ "first",
+        person == "2" ~ "second",
+        person == "3" ~ "third"
+      ),
+      number = dplyr::case_when(
+        number == "s" ~ "singular",
+        number == "p" ~ "plural",
+        number == "d" ~ "dual"
+      ),
+      tense = dplyr::case_when(
+        tense == "p" ~ "present",
+        tense == "i" ~ "imperfect",
+        tense == "r" ~ "perfect",
+        tense == "l" ~ "pluperfect",
+        tense == "t" ~ "future perfect",
+        tense == "f" ~ "future",
+        tense == "a" ~ "aorist"
+      ),
+      mood = dplyr::case_when(
+        mood == "i" ~ "indicative",
+        mood == "s" ~ "sunjunctive",
+        mood == "o" ~ "optative",
+        mood == "n" ~ "infinitive",
+        mood == "m" ~ "imperative",
+        mood == "p" ~ "participle"
+      ),
+      voice = dplyr::case_when(
+        voice == "a" ~ "active",
+        voice == "p" ~ "passive",
+        voice == "m" ~ "middle",
+        voice == "e" ~ "medio-passive"
+      ),
+      gender = dplyr::case_when(
+        gender == "m" ~ "masculine",
+        gender == "f" ~ "feminine",
+        gender == "n" ~ "neuter"
+      ),
+      case = dplyr::case_when(
+        case == "n" ~ "nominative",
+        case == "g" ~ "genative",
+        case == "d" ~ "dative",
+        case == "a" ~ "accusative",
+        case == "v" ~ "vocative",
+        case == "l" ~ "locative"
+      ),
+      degree = dplyr::case_when(
+        degree == "c" ~ "comparative",
+        degree == "s" ~ "superlative"
+      )
+    )
+}
+
+get_lemmatized_greek_text <- function(urn) {
+  if (!stringr::str_detect(urn, "-grc")) stop("Only lemmatized Greek texts available.", call. = FALSE)
+  urn <- stringr::str_replace(urn, "urn:cts:greekLit:", "")
+  url <- sprintf("https://raw.githubusercontent.com/daranzolin/LemmatizedAncientGreekXML/master/texts/%s.xml", urn)
+  r <- xml2::read_xml(url)
+  xml2::as_list(r)
+}
+
+filter_list <- function(text_list, excerpt) {
+  p <- strsplit(excerpt, "-")[[1]]
+  p1 <- as.numeric(p[1])
+  p2 <- as.numeric(p[2])
+  vv <- seq(p1, p2, by = 0.01)
+  purrr::flatten(text_list) %>%
+    purrr::keep(~attr(.x, "p") %in% vv)
+}
