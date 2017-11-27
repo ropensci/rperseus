@@ -135,6 +135,130 @@ aeneid_latin &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st
 qoheleth$text
 <span class="co">#&gt; [1] "דִּבְרֵי֙ קֹהֶ֣לֶת בֶּן־ דָּוִ֔ד מֶ֖לֶךְ בִּירוּשָׁלִָֽם : הֲבֵ֤ל הֲבָלִים֙ אָמַ֣ר קֹהֶ֔לֶת הֲבֵ֥ל הֲבָלִ֖ים הַכֹּ֥ל הָֽבֶל : מַה־ יִּתְר֖וֹן לָֽאָדָ֑ם בְּכָל־ עֲמָל֔וֹ שֶֽׁיַּעֲמֹ֖ל תַּ֥חַת הַשָּֽׁמֶשׁ :"</span></code></pre></div>
 </div>
+<div id="parsing-excerpts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parsing-excerpts" class="anchor"></a>Parsing Excerpts</h2>
+<p>You can parse any Greek excerpt, returning a data frame with each word’s part of speech, gender, case, mood, voice, tense, person, number, and degree.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/parse_excerpt.html">parse_excerpt</a></span>(<span class="st">"urn:cts:greekLit:tlg0031.tlg002.perseus-grc2"</span>, <span class="st">"5.1-5.2"</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">head</span>(<span class="dv">7</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span>knitr::<span class="kw">kable</span>()</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">word</th>
+<th align="left">form</th>
+<th align="left">verse</th>
+<th align="left">part_of_speech</th>
+<th align="left">person</th>
+<th align="left">number</th>
+<th align="left">tense</th>
+<th align="left">mood</th>
+<th align="left">voice</th>
+<th align="left">gender</th>
+<th align="left">case</th>
+<th align="left">degree</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">καί</td>
+<td align="left">Καὶ</td>
+<td align="left">5.1</td>
+<td align="left">conjunction</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">ἔρχομαι</td>
+<td align="left">ἦλθον</td>
+<td align="left">5.1</td>
+<td align="left">verb</td>
+<td align="left">third</td>
+<td align="left">plural</td>
+<td align="left">aorist</td>
+<td align="left">indicative</td>
+<td align="left">active</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">εἰς</td>
+<td align="left">εἰς</td>
+<td align="left">5.1</td>
+<td align="left">preposition</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">ὁ</td>
+<td align="left">τὸ</td>
+<td align="left">5.1</td>
+<td align="left">article</td>
+<td align="left">NA</td>
+<td align="left">singular</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">neuter</td>
+<td align="left">accusative</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">πέραν</td>
+<td align="left">πέραν</td>
+<td align="left">5.1</td>
+<td align="left">adverb</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">ὁ</td>
+<td align="left">τῆς</td>
+<td align="left">5.1</td>
+<td align="left">article</td>
+<td align="left">NA</td>
+<td align="left">singular</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">feminine</td>
+<td align="left">genative</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">θάλασσα</td>
+<td align="left">θαλάσσης</td>
+<td align="left">5.1</td>
+<td align="left">noun</td>
+<td align="left">NA</td>
+<td align="left">singular</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">feminine</td>
+<td align="left">genative</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="tidyverse-and-tidytext" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tidyverse-and-tidytext" class="anchor"></a>tidyverse and tidytext</h2>
@@ -183,11 +307,10 @@ philoctetes %&gt;%<span class="st"> </span>
 <span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(perseus_catalog) %&gt;%
 <span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(language ==<span class="st"> "grc"</span>) %&gt;%
 <span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(urn, excerpt) %&gt;%
-<span class="st">    </span><span class="kw">as.list</span>() %&gt;%
 <span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap_df</a></span>(get_perseus_text) %&gt;%
 <span class="st">    </span><span class="kw"><a href="reference/perseus_parallel.html">perseus_parallel</a></span>(<span class="dt">words_per_row =</span> <span class="dv">4</span>)
 <span class="co">#&gt; Joining, by = "label"</span></code></pre></div>
-<p><img src="README-unnamed-chunk-8-1.png" width="768"></p>
+<p><img src="README-unnamed-chunk-9-1.png" width="768"></p>
 </div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">

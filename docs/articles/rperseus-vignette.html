@@ -75,7 +75,7 @@
       <h1>rperseus Vignette</h1>
                         <h4 class="author">David Ranzolin</h4>
             
-            <h4 class="date">2017-11-11</h4>
+            <h4 class="date">2017-11-27</h4>
           </div>
 
     
@@ -148,6 +148,27 @@ crito$text[<span class="dv">1</span>]</code></pre></div>
 <span class="st">    </span><span class="kw"><a href="../reference/perseus_parallel.html">perseus_parallel</a></span>(<span class="dt">words_per_row =</span> <span class="dv">4</span>)</code></pre></div>
 <pre><code>## Joining, by = "label"</code></pre>
 <p><img src="rperseus-vignette_files/figure-html/unnamed-chunk-5-1.png" width="768"></p>
+</div>
+<div id="parsing-excerpts" class="section level3">
+<h3 class="hasAnchor">
+<a href="#parsing-excerpts" class="anchor"></a>Parsing Excerpts</h3>
+<p>You can parse any Greek excerpt with <code>parse_excerpt</code>. A data frame is returned including part of speech, person, number, tense, mood, voice, gender, case, and degree.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/parse_excerpt.html">parse_excerpt</a></span>(<span class="st">"urn:cts:greekLit:tlg0031.tlg002.perseus-grc2"</span>, <span class="st">"5.1-5.3"</span>)</code></pre></div>
+<pre><code>## # A tibble: 48 x 12
+##       word     form verse part_of_speech person   number  tense       mood
+##      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;
+##  1     καί      Καὶ   5.1    conjunction   &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;       &lt;NA&gt;
+##  2 ἔρχομαι    ἦλθον   5.1           verb  third   plural aorist indicative
+##  3     εἰς      εἰς   5.1    preposition   &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;       &lt;NA&gt;
+##  4       ὁ       τὸ   5.1        article   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+##  5   πέραν    πέραν   5.1         adverb   &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;       &lt;NA&gt;
+##  6       ὁ      τῆς   5.1        article   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+##  7 θάλασσα θαλάσσης   5.1           noun   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+##  8     εἰς      εἰς   5.1    preposition   &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;       &lt;NA&gt;
+##  9       ὁ      τὴν   5.1        article   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+## 10    χώρα    χώραν   5.1           noun   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+## # ... with 38 more rows, and 4 more variables: voice &lt;chr&gt;, gender &lt;chr&gt;,
+## #   case &lt;chr&gt;, degree &lt;chr&gt;</code></pre>
 </div>
 </div>
   </div>

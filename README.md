@@ -155,7 +155,6 @@ tibble(label = c("Colossians", "1 Thessalonians", "Romans"),
     left_join(perseus_catalog) %>%
     filter(language == "grc") %>%
     select(urn, excerpt) %>%
-    as.list() %>%
     pmap_df(get_perseus_text) %>%
     perseus_parallel(words_per_row = 4)
 #> Joining, by = "label"

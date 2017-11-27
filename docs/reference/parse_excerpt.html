@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • rperseus</title>
+<title>Parse a Greek excerpt — parse_excerpt • rperseus</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-vignette-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -92,20 +92,64 @@
       
       </header>
 
-      <div class="page-header">
-  <h1>Articles <small>version&nbsp;0.1.2</small></h1>
-</div>
-
-<div class="row">
-  <div class="col-md-9">
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="rperseus-vignette.html">rperseus Vignette</a></li>
-      </ul>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Parse a Greek excerpt</h1>
     </div>
+
+    
+    <p>This function parses a Greek excerpt from the Perseus Digital Library. Parsing includes
+part of speech, gender, case, mood, voice, tense, person, number, and degree.</p>
+    
+
+    <pre class="usage"><span class='fu'>parse_excerpt</span>(<span class='no'>urn</span>, <span class='no'>excerpt</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>urn</th>
+      <td><p>a valid urn from the perseus_catalog object.</p></td>
+    </tr>
+    <tr>
+      <th>excerpt</th>
+      <td><p>a valid excerpt, e.g. 5.1-5.5</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a data frame</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>parse_excerpt</span>(<span class='st'>"urn:cts:greekLit:tlg0031.tlg002.perseus-grc2"</span>, <span class='st'>"5.1-5.4"</span>)</div><div class='output co'>#&gt; # A tibble: 73 x 12
+#&gt;       word     form verse part_of_speech person   number  tense       mood
+#&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;
+#&gt;  1     καί      Καὶ   5.1    conjunction   &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;       &lt;NA&gt;
+#&gt;  2 ἔρχομαι    ἦλθον   5.1           verb  third   plural aorist indicative
+#&gt;  3     εἰς      εἰς   5.1    preposition   &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;       &lt;NA&gt;
+#&gt;  4       ὁ       τὸ   5.1        article   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+#&gt;  5   πέραν    πέραν   5.1         adverb   &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;       &lt;NA&gt;
+#&gt;  6       ὁ      τῆς   5.1        article   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+#&gt;  7 θάλασσα θαλάσσης   5.1           noun   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+#&gt;  8     εἰς      εἰς   5.1    preposition   &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;       &lt;NA&gt;
+#&gt;  9       ὁ      τὴν   5.1        article   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+#&gt; 10    χώρα    χώραν   5.1           noun   &lt;NA&gt; singular   &lt;NA&gt;       &lt;NA&gt;
+#&gt; # ... with 63 more rows, and 4 more variables: voice &lt;chr&gt;, gender &lt;chr&gt;,
+#&gt; #   case &lt;chr&gt;, degree &lt;chr&gt;</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
