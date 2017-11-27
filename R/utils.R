@@ -169,10 +169,21 @@ get_lemmatized_greek_text <- function(urn) {
 }
 
 filter_list <- function(text_list, excerpt) {
-  p <- strsplit(excerpt, "-")[[1]]
-  p1 <- as.numeric(p[1])
-  p2 <- as.numeric(p[2])
-  vv <- seq(p1, p2, by = 0.01)
+  if (grepl("-", excerpt)) {
+    p <- strsplit(excerpt, "-")[[1]]
+    p <- strsplit(p, "\\.")
+    p1_c <- p[[1]][1]
+    p1_v <- as.numeric(p[[1]][2])
+    p2_c <- p[[2]][1]
+    p2_v <- as.numeric(p[[2]][2])
+    if (identical(p1_c, p2_c)) {
+      vv <- paste0(p1_c, ".", p1_v:p2_v)
+    } else {
+      vv <- c(paste0(p1_c, ".", p1_v:99), paste0(p2_c, ".", 1:p2_v))
+    }
+  } else {
+    vv <- excerpt
+  }
   purrr::flatten(text_list) %>%
     purrr::keep(~attr(.x, "p") %in% vv)
 }
