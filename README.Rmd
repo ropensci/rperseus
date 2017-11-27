@@ -89,7 +89,9 @@ qoheleth$text
 You can parse any Greek excerpt, returning a data frame with each word's part of speech, gender, case, mood, voice, tense, person, number, and degree.
 
 ```{r}
-knitr::kable(parse_excerpt("urn:cts:greekLit:tlg0031.tlg002.perseus-grc2", "5.1-5.2"))
+parse_excerpt("urn:cts:greekLit:tlg0031.tlg002.perseus-grc2", "5.1-5.2") %>% 
+  head(7) %>% 
+  knitr::kable()
 ```
 
 ## tidyverse and tidytext 
