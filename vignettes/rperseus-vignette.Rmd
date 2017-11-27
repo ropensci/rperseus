@@ -61,6 +61,14 @@ tibble::tibble(label = c("Colossians", "1 Thessalonians", "Romans"),
     perseus_parallel(words_per_row = 4)
 ```
 
+### Parsing Excerpts
+
+You can parse any Greek excerpt with `parse_excerpt`. A data frame is returned including part of speech, person, number, tense, mood, voice, gender, case, and degree.
+
+```{r}
+parse_excerpt("urn:cts:greekLit:tlg0031.tlg002.perseus-grc2", "5.1-5.3")
+```
+
 
 
 

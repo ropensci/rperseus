@@ -84,6 +84,14 @@ qoheleth <- get_perseus_text(urn = "urn:cts:ancJewLit:hebBible.ecclesiastes.leni
 qoheleth$text
 ```
 
+## Parsing Excerpts
+
+You can parse any Greek excerpt, returning a data frame with each word's part of speech, gender, case, mood, voice, tense, person, number, and degree.
+
+```{r}
+knitr::kable(parse_excerpt("urn:cts:greekLit:tlg0031.tlg002.perseus-grc2", "5.1-5.2"))
+```
+
 ## tidyverse and tidytext 
 
 `rperseus` plays well with the `tidyverse` and `tidytext`. Here I obtain all of Plato's works that have English translations available:
