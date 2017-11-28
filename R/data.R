@@ -12,3 +12,12 @@
 #' }
 #' @source \url{http://cts.perseids.org/api/cts/?request=GetCapabilities}
 "perseus_catalog"
+
+#' A dictionary of Greek stop words
+#'
+#' @format A data frame with 223 rows and 1 variable:
+#' \describe{
+#'   \item{word}{Greek stop word}
+#' }
+#' @source \url{Compiled manually by filtering prepositions, pronouns, conjunctions, particles, and articles.}
+"greek_stop_words"

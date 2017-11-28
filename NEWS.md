@@ -3,6 +3,7 @@
 * Transferred repo ownership to rOpenSci
 * Includes `perseus_parallel`, a function to render parallels with `ggplot2`
 * Includes `parse_excerpt`, a function to parse any Greek excerpt
+* Includes `greek_stop_words`, a dictionary of Greek stop words
 * Updated README, vignette
 
 # rperseus 0.1
