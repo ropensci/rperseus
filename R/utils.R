@@ -179,7 +179,8 @@ filter_list <- function(text_list, excerpt) {
     if (identical(p1_c, p2_c)) {
       vv <- paste0(p1_c, ".", p1_v:p2_v)
     } else {
-      vv <- c(paste0(p1_c, ".", p1_v:99), paste0(p2_c, ".", 1:p2_v))
+      vv <- purrr::map(p1_c:p2_c, paste0, ".", 1:99) %>%
+        purrr::flatten_chr()
     }
   } else {
     vv <- excerpt
