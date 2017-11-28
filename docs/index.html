@@ -281,22 +281,23 @@ philoctetes &lt;-<span class="st"> </span>perseus_catalog %&gt;%<span class="st"
 
 philoctetes %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidytext/topics/unnest_tokens">unnest_tokens</a></span>(word, text) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">count</a></span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; # A tibble: 3,667 x 2</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">count</a></span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">anti_join</a></span>(greek_stop_words)
+<span class="co">#&gt; Joining, by = "word"</span>
+<span class="co">#&gt; # A tibble: 3,514 x 2</span>
 <span class="co">#&gt;           word     n</span>
 <span class="co">#&gt;          &lt;chr&gt; &lt;int&gt;</span>
 <span class="co">#&gt;  1 νεοπτόλεμος   164</span>
 <span class="co">#&gt;  2  φιλοκτήτης   141</span>
-<span class="co">#&gt;  3         καὶ   128</span>
-<span class="co">#&gt;  4           ὦ   119</span>
-<span class="co">#&gt;  5          δʼ   118</span>
-<span class="co">#&gt;  6         γὰρ    90</span>
-<span class="co">#&gt;  7        ἀλλʼ    86</span>
-<span class="co">#&gt;  8          τί    77</span>
-<span class="co">#&gt;  9          μʼ    74</span>
-<span class="co">#&gt; 10        πρὸς    70</span>
-<span class="co">#&gt; # ... with 3,657 more rows</span></code></pre></div>
-<p>While there’s no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!</p>
+<span class="co">#&gt;  3           ὦ   119</span>
+<span class="co">#&gt;  4          μʼ    74</span>
+<span class="co">#&gt;  5    ὀδυσσεύς    56</span>
+<span class="co">#&gt;  6      τέκνον    47</span>
+<span class="co">#&gt;  7          τʼ    43</span>
+<span class="co">#&gt;  8       χορός    41</span>
+<span class="co">#&gt;  9          γʼ    40</span>
+<span class="co">#&gt; 10         νῦν    39</span>
+<span class="co">#&gt; # ... with 3,504 more rows</span></code></pre></div>
 </div>
 <div id="rendering-parallels" class="section level2">
 <h2 class="hasAnchor">

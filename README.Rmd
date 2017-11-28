@@ -98,7 +98,7 @@ parse_excerpt("urn:cts:greekLit:tlg0031.tlg002.perseus-grc2", "5.1-5.2") %>%
 
 `rperseus` plays well with the `tidyverse` and `tidytext`. Here I obtain all of Plato's works that have English translations available:
 
-```{r eval = FALSE}
+```{r eval = FALSE, warning = FALSE}
 library(purrr)
 plato <- perseus_catalog %>% 
   filter(group_name == "Plato",
@@ -121,10 +121,10 @@ philoctetes <- perseus_catalog %>%
 
 philoctetes %>% 
   unnest_tokens(word, text) %>% 
-  count(word, sort = TRUE)
+  count(word, sort = TRUE) %>% 
+  anti_join(greek_stop_words)
 ```
 
-While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!
 
 ## Rendering Parallels
 

@@ -125,24 +125,24 @@ philoctetes <- perseus_catalog %>%
 
 philoctetes %>% 
   unnest_tokens(word, text) %>% 
-  count(word, sort = TRUE)
-#> # A tibble: 3,667 x 2
+  count(word, sort = TRUE) %>% 
+  anti_join(greek_stop_words)
+#> Joining, by = "word"
+#> # A tibble: 3,514 x 2
 #>           word     n
 #>          <chr> <int>
 #>  1 νεοπτόλεμος   164
 #>  2  φιλοκτήτης   141
-#>  3         καὶ   128
-#>  4           ὦ   119
-#>  5          δʼ   118
-#>  6         γὰρ    90
-#>  7        ἀλλʼ    86
-#>  8          τί    77
-#>  9          μʼ    74
-#> 10        πρὸς    70
-#> # ... with 3,657 more rows
+#>  3           ὦ   119
+#>  4          μʼ    74
+#>  5    ὀδυσσεύς    56
+#>  6      τέκνον    47
+#>  7          τʼ    43
+#>  8       χορός    41
+#>  9          γʼ    40
+#> 10         νῦν    39
+#> # ... with 3,504 more rows
 ```
-
-While there's no obvious way to filter out the Greek stop words and prepositions, or recognize the various moods and tenses of Greek verbs, the text is ripe for analysis!
 
 Rendering Parallels
 -------------------

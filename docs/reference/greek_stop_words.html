@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • rperseus</title>
+<title>A dictionary of Greek stop words — greek_stop_words • rperseus</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -93,53 +93,39 @@
       </header>
 
       <div class="row">
-
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+    <h1>A dictionary of Greek stop words</h1>
     </div>
 
-    <div class="contents">
-    <div id="rperseus-0-1-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#rperseus-0-1-2" class="anchor"></a>rperseus 0.1.2</h1>
-<ul>
-<li>Transferred repo ownership to rOpenSci</li>
-<li>Includes <code>perseus_parallel</code>, a function to render parallels with <code>ggplot2</code>
-</li>
-<li>Includes <code>parse_excerpt</code>, a function to parse any Greek excerpt</li>
-<li>Includes <code>greek_stop_words</code>, a dictionary of Greek stop words</li>
-<li>Updated README, vignette</li>
-</ul>
-</div>
-    <div id="rperseus-0-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#rperseus-0-1" class="anchor"></a>rperseus 0.1</h1>
-<p>First version of package, including</p>
-<ul>
-<li>
-<code>get_perseus_text</code> function, for getting texts from the Perseus Digital Library</li>
-<li>
-<code>perseus_catalog</code> data frame to peruse text URNs</li>
-<li>Introductory vignette including basic examples of retrieving texts</li>
-<li>Added a <code>NEWS.md</code> file to track changes to the package</li>
-<li>
-<code>pkgdown</code> site</li>
-</ul>
-</div>
-    </div>
+    
+    <p>A dictionary of Greek stop words</p>
+    
+
+    <pre class="usage"><span class='no'>greek_stop_words</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 223 rows and 1 variable:</p><dl class='dl-horizontal'>
+  <dt>word</dt><dd><p>Greek stop word</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='Compiled manually by filtering prepositions, pronouns, conjunctions, particles, and articles.'>Compiled manually by filtering prepositions, pronouns, conjunctions, particles, and articles.</a></p>
+    
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#rperseus-0-1-2">0.1.2</a></li>
-        <li><a href="#rperseus-0-1">0.1</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      <li><a href="#format">Format</a></li>
 
+      <li><a href="#source">Source</a></li>
+          </ul>
+
+  </div>
 </div>
 
       <footer>
