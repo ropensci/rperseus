@@ -19,5 +19,5 @@
 #' \describe{
 #'   \item{word}{Greek stop word}
 #' }
-#' @source \url{Compiled manually by filtering prepositions, pronouns, conjunctions, particles, and articles.}
+#' @source Compiled manually by filtering prepositions, pronouns, conjunctions, particles, and articles.
 "greek_stop_words"

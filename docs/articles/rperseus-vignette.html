@@ -75,7 +75,7 @@
       <h1>rperseus Vignette</h1>
                         <h4 class="author">David Ranzolin</h4>
             
-            <h4 class="date">2017-11-27</h4>
+            <h4 class="date">2017-11-28</h4>
           </div>
 
     
@@ -84,7 +84,20 @@
 <div id="introduction" class="section level3">
 <h3 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h3>
-<p>The workhorse of <code>rperseus</code> is <code>get_perseus_text</code>. You pass one argument to this function: <code>urn</code>. URNs (Uniform Resource Number) can be located within the <code>perseus_catalog</code> object, which is lazily loaded on <code>library(rperseus)</code>. I recommend scanning the catalog before selecting a text.</p>
+<p><code>rperseus</code> provides tools to get and analyze classical texts. Version 0.1.2 includes:</p>
+<ul>
+<li>
+<code>get_perseus_text</code>, a function to obtain a text from the Perseus Digital Library</li>
+<li>
+<code>perseus_parallel</code>, a function to render a text parallel in <code>ggplot2</code>
+</li>
+<li>
+<code>parse_excerpt</code>, a function to parse any Greek excerpt</li>
+<li>
+<code>perseus_catalog</code>, a data frame of available texts</li>
+<li>
+<code>greek_stop_words</code>, a data frame of Greek pronouns, articles, prepositions, and particles</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rperseus)
 <span class="kw">head</span>(perseus_catalog)</code></pre></div>
 <pre><code>## # A tibble: 6 x 5

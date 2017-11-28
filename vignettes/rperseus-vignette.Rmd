@@ -11,7 +11,13 @@ vignette: >
 
 ### Introduction
 
-The workhorse of `rperseus` is `get_perseus_text`. You pass one argument to this function: `urn`. URNs (Uniform Resource Number) can be located within the `perseus_catalog` object, which is lazily loaded on `library(rperseus)`. I recommend scanning the catalog before selecting a text.
+`rperseus` provides tools to get and analyze classical texts. Version 0.1.2 includes:
+
+* `get_perseus_text`, a function to obtain a text from the Perseus Digital Library
+* `perseus_parallel`, a function to render a text parallel in `ggplot2`
+* `parse_excerpt`, a function to parse any Greek excerpt
+* `perseus_catalog`, a data frame of available texts
+* `greek_stop_words`, a data frame of Greek pronouns, articles, prepositions, and particles
 
 ```{r}
 library(rperseus)
