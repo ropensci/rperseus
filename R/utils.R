@@ -52,7 +52,7 @@ extract_text <- function(text_url) {
     xml2::read_xml() %>%
     xml2::as_list()
 
-  text <- purrr::map(r_list$reply$passage$TEI$text$body$div,
+  text <- purrr::map(r_list$GetPassage$reply$passage$TEI$text$body$div,
                      ~ paste(unlist(.), collapse = " ")) %>%
     stringr::str_replace_all("\\s+", " ") %>%
     stringr::str_replace_all("\\*", "") %>%
@@ -185,6 +185,6 @@ filter_list <- function(text_list, excerpt) {
   } else {
     vv <- excerpt
   }
-  purrr::flatten(text_list) %>%
+  purrr::flatten(text_list$text) %>%
     purrr::keep(~attr(.x, "p") %in% vv)
 }

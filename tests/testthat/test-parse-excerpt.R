@@ -1,4 +1,4 @@
-context("perseus_excerpt")
+context("parse_excerpt")
 
 test_that("Can parse an excerpt", {
   skip_on_cran()
