@@ -59,7 +59,7 @@ extract_text <- function(text_url) {
     stringr::str_replace_all("/", "") %>%
     stringr::str_trim() %>%
     purrr::discard(~.=="")
-  dplyr::data_frame(text = text)
+  dplyr::tibble(text = text)
 }
 
 split_every <- function(x, n, pattern, collapse = pattern, ...) {
