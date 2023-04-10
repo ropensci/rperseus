@@ -18,7 +18,7 @@ theme_perseus <- function(base_size = 12, base_family = "Helvetica"){
       legend.key=element_rect(colour = NA, fill = NA),
       strip.background = element_rect(colour="black", fill="lightgrey"),
       panel.grid = element_blank(),
-      panel.border = element_rect(fill = NA, colour = "lightblue", size = 1),
+      panel.border = element_rect(fill = NA, colour = "lightblue", linewidth = 1),
       panel.spacing.x = unit(0, "lines")
     )
 }
