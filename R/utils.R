@@ -19,11 +19,12 @@ get_text_url <- function(text_urn, text_index) {
 get_full_text_index <- function(new_urn) {
 
   content_url <- paste("http://cts.perseids.org/read", new_urn, sep = "/")
-  perseus_html <- httr::GET(content_url) %>%
-    httr::content("text") %>%
-    xml2::read_html()
+  perseus_html <- httr::GET(content_url)
+  httr::stop_for_status(perseus_html)
 
   perseus_texts <- perseus_html %>%
+    httr::content("text") %>%
+    xml2::read_html() %>%
     rvest::html_nodes(".col-md-1") %>%
     rvest::html_text() %>%
     as.character() %>%
